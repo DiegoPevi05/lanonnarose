@@ -3,10 +3,13 @@ export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      colors:{
+      colors: {
         primary: "#c5948c",
         secondary: "#fbf1e2",
-        tertiary: "#b7b4a0"
+        tertiary: "#b7b4a0",
+        caramel: "#d8a06d",
+        rose: "#e8c1b0",
+        cocoa: "#70534b",
       },
       boxShadow: {
         card: "0px 35px 120px -15px #211e35",
@@ -15,11 +18,12 @@ export default {
         xs: "450px",
       },
       fontFamily: {
-        heading: ['BerkshireSwash-Regular','sans-serif'],
-        body: ['Arcane Nine','serif'],
+        heading: ['BerkshireSwash-Regular', 'sans-serif'],
+        body: ['Arcane Nine', 'serif'],
       },
       backgroundImage: {
-        "body-pattern": "url('/src/assets/images/bgNonnaRose.jpg')",
+        "hero": "url('/src/assets/images/background-hero.png')",
+        "fence-gradient": "linear-gradient(-60deg, #e8c1b0 0% 90%,  #fff 100% 100%, #e8c1b0 98% 100%)",
       },
     },
   },

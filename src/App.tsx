@@ -11,7 +11,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
 
-  const [webData, setWebData] = useState<WebData|undefined>();
+  /*const [webData, setWebData] = useState<WebData|undefined>();
   //axios to call api and get data
   const getDataFromServer = async () => {
     try {
@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     getDataFromServer();
-  }, []);
+    }, []);*/
 
 
   return(
@@ -36,8 +36,8 @@ function App() {
       <Providers>
         <Router>
           <Routes>
-            <Route path='/' element={<Home webData={webData}/>} />
-            <Route path='/catalog' element={<CatalogComponent webData={webData}/>} />
+            <Route path='/' element={<Home/>} />
+            {/*<Route path='/catalog' element={<CatalogComponent webData={webData}/>} />  */}
           </Routes>
         </Router>
       </Providers>

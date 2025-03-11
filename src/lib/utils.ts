@@ -5,6 +5,54 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export function getScreenSize(windowWidth:number, windowHeight:number):"sm"|"md"| "lg" | "xl" {
+
+  if(windowWidth < 640){
+    return "sm";
+  }else if(windowWidth >= 640 && windowWidth < 1024){
+    return "md";
+  }else if(windowWidth >= 1024 && windowWidth < 1280){
+    return "lg";
+  }else{
+    return "xl";
+  }
+}
+
+export function calculateHeroFenceTopAndDelay(totalItems:number, i:number, maxWaves:number, maxTop:number, baseDelay:number, amplitude:number ): { topValue: number, delay: number } {
+
+  const normIndex = i / (totalItems - 1);
+  const angle = normIndex * (2 * Math.PI * maxWaves);
+  const waveValue = Math.cos(angle);
+  const topValue = ((waveValue + 1) / 2) * amplitude + maxTop;
+
+  // Compute animation delay based on position from the center
+  let delay = 0;
+
+  if (totalItems % 2 === 0) {
+    // Even count: for 50 items, left: indices 0..24, right: indices 25..49
+    const centerLeft = totalItems / 2 - 1; // e.g. 24
+    if (i <= centerLeft) {
+      // Left side: increasing delay from left edge to center
+      delay = i * baseDelay;
+    } else {
+      // Right side: reverse delay so index 25 gets max delay and index 49 gets 0
+      delay = (totalItems - 1 - i) * baseDelay;
+    }
+  } else {
+    // Odd count: center is a single index.
+    const centerIndex = Math.floor(totalItems / 2);
+    if (i < centerIndex) {
+      delay = i * baseDelay;
+    } else if (i > centerIndex) {
+      delay = (totalItems - 1 - i) * baseDelay;
+    } else {
+      delay = 0;
+    }
+  }
+
+  return { topValue, delay };
+}
+
 export function mapInputData(data: any) {
 
   data.blogs      = mapBlogs(data.blogs);

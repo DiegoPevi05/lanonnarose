@@ -28,7 +28,7 @@ const [dots, setDots] = useState("");
 	   src={Cake} 
 	   alt="cake" 
 	   className="
-	     w-32 h-32
+	     w-36 h-36
 	     vibrating-svg" 
 	    />
 	  <span className="text-heading mt-8 text-2xl inline-flex flex-row relative">

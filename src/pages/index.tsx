@@ -7,6 +7,8 @@ import About from '../components/About';
 import Blog from '../components/Blog';
 import {WebData} from '../interfaces'
 import Loader from '../components/ui/Loader';
+import { useLoader } from '../contexts/loader';
+import {getScreenSize} from '../lib/utils';
 
 interface HomeProps {
   webData: WebData | undefined;
@@ -14,30 +16,46 @@ interface HomeProps {
 
 const Home:FC<HomeProps> = ({webData}) => {
 
-  const [loading,setLoading] = useState(true);
+  const { showLoader, hideLoader } = useLoader();
+
+  const [windowSize,setWindowSize] = useState<"sm"|"md"|"lg"|"xl">("xl");
+
+  /*const [loading,setLoading] = useState(true);*/
 
   useEffect(()=>{
-    if(webData != null && webData != undefined){
-      setLoading(false);
+
+    /*showLoader("page");
+
+    setTimeout(()=>{
+
+      hideLoader();
+
+      },2000)*/
+
+    setWindowSize(getScreenSize(window.innerWidth,window.innerHeight));
+    window.addEventListener('resize',()=>{
+      setWindowSize(getScreenSize(window.innerWidth,window.innerHeight));
+    })
+
+    return ()=>{
+      window.removeEventListener('resize',()=>{});
     }
-  },[webData])
+
+  },[])
 
 
-
-  if(loading || webData == undefined){
-    return <Loader isLoading={loading}/>
-  }else{
-    return(
-      <>
-        <Navbar/>
-        <Hero webContent={webData.webContent}/>
+  return(
+    <>
+      <Navbar/>
+      <Hero windowSize={windowSize} title={"Bienvenido a La Nona Rose"} content="Encuentra los mejores postres que puedas encontrar"/>
+      {/*
         <About webContent={webData.webContent}/>
         <Catalog webContent={webData.webContent} products={webData.products} isSection={false} />
         <Blog webContent={webData.webContent} blogs={webData.blogs}/>
         <Contact/>
-      </>
-    )
-  }
+      */}
+    </>
+  )
 
 }
 
