@@ -39,7 +39,7 @@ const Hero = (props:HeroCompProps) => {
   return(
       <section
         id="hero-section"
-        className="relative w-full h-[100vh] mx-auto overflow-hidden bg-hero bg-repeat"
+        className="relative w-full h-[100vh] mx-auto overflow-hidden bg-hero bg-repeat z-[120]"
         style={{ backgroundSize: '250px 250px' }}
       >
             <h1 className="

@@ -9,6 +9,7 @@ import {WebData} from '../interfaces'
 //import Loader from '../components/ui/Loader';
 //import { useLoader } from '../contexts/loader';
 import {getScreenSize} from '../lib/utils';
+import Events from '../components/Events';
 
 interface HomeProps {
   webData: WebData | undefined;
@@ -48,6 +49,7 @@ const Home:FC<HomeProps> = () => {
     <>
       <Navbar/>
       <Hero windowSize={windowSize} title={"Bienvenido a La Nona Rose"} content="Encuentra los mejores postres que puedas encontrar"/>
+      <Events/>
       {/*
         <About webContent={webData.webContent}/>
         <Catalog webContent={webData.webContent} products={webData.products} isSection={false} />

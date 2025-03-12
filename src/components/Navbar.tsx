@@ -31,7 +31,7 @@ const Navbar: FC = () => {
 
 
   return(
-      <div className="fixed top-0 z-[100] w-full h-auto max-h-screen relative bg-transparent">
+      <div className="fixed top-0 z-[140] w-full h-auto max-h-screen relative bg-transparent">
         <button 
           id="btn_open_navbar" 
           onClick={onToggleNavbar}
