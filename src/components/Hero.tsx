@@ -1,11 +1,11 @@
-import { styles } from '../styles';
+//import { styles } from '../styles';
 import Link from '../components/ui/Link';
 import { Phone, ClipboardList } from 'lucide-react';
 import {useTranslation} from 'react-i18next'
 import {calculateHeroFenceTopAndDelay} from '../lib/utils';
 import {useEffect, useState} from 'react';
 import { ChevronDown } from 'lucide-react';
-import AnimatedComponent from './ui/AnimatedComponent';
+//import AnimatedComponent from './ui/AnimatedComponent';
 
 
 interface HeroCompProps {

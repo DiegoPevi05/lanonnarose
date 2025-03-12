@@ -1,22 +1,22 @@
 import { FC,useState, useEffect} from 'react';
 import Hero from '../components/Hero';
 import Navbar from '../components/Navbar';
-import Catalog from '../components/Catalog';
-import Contact from '../components/Contact';
-import About from '../components/About';
-import Blog from '../components/Blog';
+//import Catalog from '../components/Catalog';
+//import Contact from '../components/Contact';
+//import About from '../components/About';
+//import Blog from '../components/Blog';
 import {WebData} from '../interfaces'
-import Loader from '../components/ui/Loader';
-import { useLoader } from '../contexts/loader';
+//import Loader from '../components/ui/Loader';
+//import { useLoader } from '../contexts/loader';
 import {getScreenSize} from '../lib/utils';
 
 interface HomeProps {
   webData: WebData | undefined;
 }
 
-const Home:FC<HomeProps> = ({webData}) => {
+const Home:FC<HomeProps> = () => {
 
-  const { showLoader, hideLoader } = useLoader();
+  //const { showLoader, hideLoader } = useLoader();
 
   const [windowSize,setWindowSize] = useState<"sm"|"md"|"lg"|"xl">("xl");
 
@@ -32,9 +32,9 @@ const Home:FC<HomeProps> = ({webData}) => {
 
       },2000)*/
 
-    setWindowSize(getScreenSize(window.innerWidth,window.innerHeight));
+    setWindowSize(getScreenSize(window.innerWidth));
     window.addEventListener('resize',()=>{
-      setWindowSize(getScreenSize(window.innerWidth,window.innerHeight));
+      setWindowSize(getScreenSize(window.innerWidth));
     })
 
     return ()=>{

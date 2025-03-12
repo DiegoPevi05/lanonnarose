@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function getScreenSize(windowWidth:number, windowHeight:number):"sm"|"md"| "lg" | "xl" {
+export function getScreenSize(windowWidth:number):"sm"|"md"| "lg" | "xl" {
 
   if(windowWidth < 640){
     return "sm";

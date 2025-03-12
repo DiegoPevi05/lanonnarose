@@ -1,12 +1,12 @@
-import {Suspense, useState, useEffect} from 'react';
+import {Suspense} from 'react';
 import Providers from './components/Providers';
 import Home from './pages';
-import CatalogComponent from './pages/catalog';
+//import CatalogComponent from './pages/catalog';
 import './lib/i18n';
-import axios from 'axios';
-import {mapInputData} from './lib/utils';
-import {WebData} from './interfaces';
-import {toast} from "react-hot-toast";
+//import axios from 'axios';
+//import {mapInputData} from './lib/utils';
+//import {WebData} from './interfaces';
+//import {toast} from "react-hot-toast";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
       <Providers>
         <Router>
           <Routes>
-            <Route path='/' element={<Home/>} />
+            <Route path='/' element={<Home webData={undefined}/>} />
             {/*<Route path='/catalog' element={<CatalogComponent webData={webData}/>} />  */}
           </Routes>
         </Router>
