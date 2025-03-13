@@ -134,6 +134,16 @@
   transform: translate(-50%, 200%); /* Keep X translation */
 }
 
+.text-shadow-primary{
+	text-shadow: 
+    0 0 5px #fff, 
+    0 0 10px #fff, 
+    0 0 15px #c5948c, 
+    0 0 20px #c5948c, 
+    0 0 30px #c5948c, 
+    0 0 40px #c5948c;
+}
+
 
 
 
