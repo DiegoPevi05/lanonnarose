@@ -1,29 +1,68 @@
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
+import { useGLTF } from '@react-three/drei';
+import * as THREE from 'three';
 
 const Cake = () => {
-  const cakeRef = useRef();
+  const cakeRef:any = useRef();
+  const { scene } = useGLTF('/cakes/strawberry_cake.glb');
 
   // Rotate the cake continuously
   useFrame(() => {
     if (cakeRef.current) {
-      cakeRef.current.rotation.y += 0.01;
+      cakeRef.current.rotation.y += 0.01; // Adjust rotation speed as needed
     }
   });
 
+  // Find candle objects in the GLB model
+  const candles:any[] = [];
+  scene.traverse((child) => {
+    if (child.name == 'pCone1') {
+      candles.push(child);
+    }
+  });
+
+  console.log(candles);
+
   return (
-    <mesh ref={cakeRef} position={[0, 0, 0]}>
-      {/* A simple cylinder to represent the cake */}
-      <cylinderGeometry args={[1, 1, 0.5, 32]} />
-      <meshStandardMaterial color="pink" />
-    </mesh>
+    <group ref={cakeRef} position={[1, -1, 2.5]} rotation={[0.2,0,0]} scale={[30, 30, 30]}>
+      {/* Render the GLB model */}
+      <primitive object={scene} />
+      {/* Add point lights at candle positions */}
+      {candles.map((candle, index) => {
+        // Compute the light position by transforming the candle's position with the scene's matrix
+        const lightPosition = new THREE.Vector3()
+          .copy(candle.position)
+          .applyMatrix4(scene.matrix);
+        return (
+          <React.Fragment key={index}>
+            {/* Point light for candle glow */}
+            <pointLight
+              position={lightPosition}
+              intensity={0.5}    // Adjust intensity for glow effect
+              distance={5}       // Limit the light's reach
+              color="yellow"     // Warm color for candle glow
+            />
+            {/* Circle to mark candle position */}
+            <mesh position={lightPosition}>
+              <sphereGeometry args={[100, 32, 32]} /> {/* Radius 0.1, 32 width segments, 32 height segments */}
+              <meshBasicMaterial color="red" />
+            </mesh>
+          </React.Fragment>
+        );
+      })}
+    </group>
   );
 };
 
 const BirthdayScene = () => {
   return (
     <div className="h-[100vh] w-full relative">
-      <Canvas style={{ background: 'black' }}>
+      <Canvas
+        style={{
+          background: '#24252B', // Gradient centered at 25% from left, 25% from top
+        }}
+      >
         {/* Lighting setup */}
         <ambientLight intensity={0.5} />
         <directionalLight position={[0, 5, 5]} intensity={1} />
