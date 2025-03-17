@@ -223,7 +223,7 @@ const BirthdayScene = () => {
       '>
         <div className="birthday-info">
           <div className="birthday-info-text">
-            <p className='text-xl font-body text-justify mt-5'>
+            <p className="text-xl font-body text-justify mt-5">
               We can make your birthday special by sharing a cake with you. It's a special day for you and for all of us who love you. We bring you different cakes that you can enjoy with your loved ones.
             </p>
             <div className='w-full h-auto flex flex-row justify-between items-center mt-4'>
