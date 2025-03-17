@@ -203,8 +203,11 @@ const BirthdayScene = () => {
         <Cake />
       </Canvas>
       {/* HTML overlay for text or other elements */}
-      <div className='absolute top-[10%] left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+      <div className='absolute top-[10%] left-[10%] transform -translate-x-1/2 -translate-y-1/2'>
         <p className='text-primary font-heading text-6xl text-shadow-primary'>Events</p>
+      </div>
+      <div className='absolute top-[20%] right-[5%] transform -translate-x-1/2 -translate-y-1/2'>
+        <p className='text-primary font-heading text-6xl text-shadow-primary'>Happy Birthday</p>
       </div>
       <div className='
         absolute 
@@ -212,7 +215,7 @@ const BirthdayScene = () => {
         left-[10%] 
         top-1/2 
         -translate-y-1/2
-        h-[60%]
+        h-[300px]
         w-[400px]
         font-heading 
         text-primary 
@@ -220,10 +223,17 @@ const BirthdayScene = () => {
       '>
         <div className="birthday-info">
           <div className="birthday-info-text">
-            <h1 className='text-4xl text-left text-shadow-primary'>Happy Birthday!</h1>
-            <p className='text-xl font-body text-justify mt-5 text-shadow-primary'>
-              Hola es bonito compartir en cumpleaños, es un día especial para ti y para todos los que te queremos, te traemos distintas tortas que podras degustar en compañia de tus seres queridos.
+            <p className='text-xl font-body text-justify mt-5'>
+              We can make your birthday special by sharing a cake with you. It's a special day for you and for all of us who love you. We bring you different cakes that you can enjoy with your loved ones.
             </p>
+            <div className='w-full h-auto flex flex-row justify-between items-center mt-4'>
+              <button className='font-heading border-2 border-primary text-primary px-5 py-2 rounded-lg hover:bg-primary hover:text-white transition-all duration-300 ease-in-out active:scale-95'>
+                See Catalog
+              </button>
+              <button className='font-heading border-2 border-cocoa text-cocoa px-5 py-2 rounded-lg hover:bg-cocoa hover:text-white transition-all duration-300 ease-in-out active:scale-95'>
+                See Birthday Cakes
+              </button>
+            </div>
           </div>
         </div>
       </div>
