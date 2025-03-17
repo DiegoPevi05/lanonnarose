@@ -24,6 +24,7 @@ export default {
       backgroundImage: {
         "hero": "url('/src/assets/images/background-hero.png')",
         "fence-gradient": "linear-gradient(-60deg, #e8c1b0 0% 90%,  #fff 100% 100%, #e8c1b0 98% 100%)",
+        "fence-gradient-cocoa": "linear-gradient(-60deg, #af9187 0% 90%,  #fff 100% 100%, #af9187 98% 100%)",
       },
     },
   },

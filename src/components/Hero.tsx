@@ -119,7 +119,7 @@ const Hero = (props:HeroCompProps) => {
                   relative
                   rounded-t-full
                   shadow-lg
-                  bg-fence-gradient
+                  ${ i % 2 === 0 ? 'bg-fence-gradient-cocoa' : 'bg-fence-gradient'}
                   fence-item 
                   h-[110%]
                   flex-1

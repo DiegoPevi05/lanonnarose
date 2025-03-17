@@ -1,7 +1,61 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
+
+const vertexShader = `
+  uniform float time;
+  varying vec2 vUv;
+  varying float hValue;
+
+  // 2D Random
+  float random (in vec2 st) {
+    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+  }
+
+  // 2D Noise based on Morgan McGuire @morgan3d
+  float noise (in vec2 st) {
+    vec2 i = floor(st);
+    vec2 f = fract(st);
+    float a = random(i);
+    float b = random(i + vec2(1.0, 0.0));
+    float c = random(i + vec2(0.0, 1.0));
+    float d = random(i + vec2(1.0, 1.0));
+    vec2 u = f*f*(3.0-2.0*f);
+    return mix(a, b, u.x) + (c - a)* u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+  }
+
+  void main() {
+    vUv = uv;
+    vec3 pos = position;
+    pos *= vec3(0.8, 2, 0.725);
+    hValue = position.y;
+    float posXZlen = length(position.xz);
+    pos.y *= 1. + (cos((posXZlen + 0.25) * 3.1415926) * 0.25 + noise(vec2(0, time)) * 0.125 + noise(vec2(position.x + time, position.z + time)) * 0.5) * position.y;
+    pos.x += noise(vec2(time * 2., (position.y - time) * 4.0)) * hValue * 0.0312;
+    pos.z += noise(vec2((position.y - time) * 4.0, time * 2.)) * hValue * 0.0312;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos,1.0);
+  }
+`;
+
+const fragmentShader = `
+  varying float hValue;
+  varying vec2 vUv;
+
+  vec3 heatmapGradient(float t) {
+    return clamp((pow(t, 1.5) * 0.8 + 0.2) * vec3(smoothstep(0.0, 0.35, t) + t * 0.5, smoothstep(0.5, 1.0, t), max(1.0 - t * 1.7, t * 7.0 - 6.0)), 0.0, 1.0);
+  }
+
+  void main() {
+    float v = abs(smoothstep(0.0, 0.4, hValue) - 1.);
+    float alpha = (1. - v) * 0.99;
+    alpha -= 1. - smoothstep(1.0, 0.97, hValue);
+    gl_FragColor = vec4(heatmapGradient(smoothstep(0.0, 0.3, hValue)) * vec3(0.95,0.95,0.4), alpha);
+    gl_FragColor.rgb = mix(vec3(0,0,1), gl_FragColor.rgb, smoothstep(0.0, 0.3, hValue));
+    gl_FragColor.rgb += vec3(1, 0.9, 0.5) * (1.25 - vUv.y);
+    gl_FragColor.rgb = mix(gl_FragColor.rgb, vec3(0.66, 0.32, 0.03), smoothstep(0.95, 1., hValue));
+  }
+`;
 
 
 const Cake = () => {
@@ -12,64 +66,96 @@ const Cake = () => {
   // Find candle objects in the GLB model
   const candles:any[] = [];
   scene.traverse((child) => {
-    if (child.name == 'pCone1') {
+    if (['pCone1','pCone2','pCone3','pCone4','pCone5','pCone6','pCone7','pCone8'].includes(child.name)) {
       candles.push(child);
+      child.visible = false;
     }
   });
 
-  // Store absolute positions for candles (updated every frame)
-  const candleWorldPositions = useRef(candles.map(() => new THREE.Vector3()));
+ // Create a shared ShaderMaterial for all flames
+  const flameMaterial = useMemo(() => {
+    return new THREE.ShaderMaterial({
+      uniforms: { time: { value: 0 } },
+      vertexShader: vertexShader,
+      fragmentShader: fragmentShader,
+      transparent: true,
+      side: THREE.DoubleSide,
+    });
+  }, []);
 
-  // Rotate the cake and update candle positions
-  useFrame(() => {
+  const flameGeometry = useMemo(() => {
+    const geo = new THREE.SphereGeometry(0.5, 32, 32);
+    geo.translate(0, 0.5, 0);
+    return geo;
+  }, []);
+
+  const flameRefs:any = useRef(candles.map(() => React.createRef()));
+  const lightRefs:any = useRef(candles.map(() => React.createRef()));
+
+  // Update positions every frame
+  useFrame((state) => {
+    // Update the time uniform for flame animation
+    flameMaterial.uniforms.time.value = state.clock.getElapsedTime();
+
     if (cakeRef.current) {
       // Rotate the cake
-      cakeRef.current.rotation.y += 0.01;
+      cakeRef.current.rotation.y += 0.002;
 
-      // Update absolute world positions for each candle
+      // Ensure the scene's world matrix is updated
+      scene.updateMatrixWorld(true);
+
+      // Position spheres and lights at each candle
       candles.forEach((candle, index) => {
-        candleWorldPositions.current[index]
-          .copy(candle.position) // Start with local position
-          .applyMatrix4(cakeRef.current.matrixWorld); // Transform to world space
+        const worldPos = new THREE.Vector3();
+        candle.getWorldPosition(worldPos);
+        const localPos = cakeRef.current.worldToLocal(worldPos.clone());
+
+        // Update sphere position
+        if (flameRefs.current[index].current) {
+          localPos.y -= 0.001;
+          flameRefs.current[index].current.position.copy(localPos);
+        }
+
+        // Update light position
+        if (lightRefs.current[index].current) {
+          lightRefs.current[index].current.position.copy(localPos);
+        }
       });
     }
   });
 
-  console.log(candles);
+
 
 
   return (
-    <group ref={cakeRef} position={[1, -1, 2.5]} rotation={[0.2,0,0]} scale={[30, 30, 30]}>
+    <group ref={cakeRef} position={[0.7, -1.3, 3]} rotation={[0.2,0,0]} scale={[30, 30, 30]}>
       {/* Render the GLB model */}
       <primitive object={scene} />
       {/* Add point lights at candle positions */}
 
-      {candles.map((candle, index) => {
+      {candles.map((_, index) => {
         // Compute the light position by transforming the candle's position with the scene's matrix
         return (
           <React.Fragment key={index}>
             {/* Point light for candle glow */}
             <pointLight
-              position={candleWorldPositions.current[index]}
+              ref={lightRefs.current[index]}
               intensity={1}    // Adjust intensity for glow effect
-              distance={5}       // Limit the light's reach
-              decay={2}          // Smooth falloff
+              distance={1.5}       // Limit the light's reach
+              decay={3}          // Smooth falloff
               color="0xffaa33"     // Warm color for candle glow
               castShadow={true}
             />
             <pointLight
-              position={candleWorldPositions.current[index]}
+              ref={lightRefs.current[index]}
               intensity={1}    // Adjust intensity for glow effect
-              distance={5}       // Limit the light's reach
-              decay={2}          // Smooth falloff
+              distance={1.5}       // Limit the light's reach
+              decay={3}          // Smooth falloff
               color="0xffaa33"     // Warm color for candle glow
               castShadow={true}
             />
             {/* Circle to mark candle position */}
-            <mesh position={candleWorldPositions.current[index]}>
-              <sphereGeometry args={[0.020, 32, 32]} /> {/* Radius 0.1, 32 width segments, 32 height segments */}
-              <meshBasicMaterial color="red" />
-            </mesh>
+            <mesh ref={flameRefs.current[index]} material={flameMaterial} geometry={flameGeometry} scale={[0.0015, 0.002, 0.0015]} />
           </React.Fragment>
         );
       })}
@@ -103,11 +189,9 @@ const BirthdayScene = () => {
           return renderer;
         }}
       >
-        <OrbitControls />
         {/* Lighting setup */}
         <ambientLight 
-          //intensity={0.025} 
-          intensity={1}
+          intensity={0.025} 
         />
         <directionalLight
           ref={lightRef} // Attach the ref to the directionalLight
