@@ -62,7 +62,6 @@ const Hero = (props:HeroCompProps) => {
               bg-primary 
               rounded-lg
               px-4
-              slide-in
               absolute
               text-lg sm:text-xl
               text-center

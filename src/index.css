@@ -353,7 +353,7 @@
 
 /* Hover effects for extra 3D pop */
 .birthday-info:hover {
-    transform: rotateX(-5deg) rotateY(35deg); /* Tilt the card */
+    transform: rotateX(-5deg) rotateY(20deg); /* Tilt the card */
 }
 
 .birthday-info:hover::before {
@@ -379,3 +379,23 @@
 		background: rgba(197, 148, 140, 0.7); /* Darken the back face */
 		transition: background 0.3s ease;
 }
+
+
+@keyframes slide-in {
+	0% {
+		opactiy: 0;
+		transform: translateY(100%);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.slide-in {
+	opacity: 0;
+	animation: slide-in 0.8s ease-in-out forwards;
+}
+
+

@@ -206,8 +206,8 @@ const BirthdayScene = () => {
       <div className='absolute top-[10%] left-[10%] transform -translate-x-1/2 -translate-y-1/2'>
         <p className='text-primary font-heading text-6xl text-shadow-primary'>Events</p>
       </div>
-      <div className='absolute top-[20%] right-[5%] transform -translate-x-1/2 -translate-y-1/2'>
-        <p className='text-primary font-heading text-6xl text-shadow-primary'>Happy Birthday</p>
+      <div className='absolute top-[20%] right-[5rem] transform -translate-x-1/2 -translate-y-1/2'>
+        <p className='text-primary font-heading text-6xl text-shadow-primary slide-in'>Happy Birthday</p>
       </div>
       <div className='
         absolute 
