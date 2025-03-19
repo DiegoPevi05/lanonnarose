@@ -14,6 +14,15 @@
 	src: url('./assets/fonts/Arcane Nine.otf') format('opentype');
 }
 
+:root {
+	--primary-color: #c5948c;
+	--secondary-color: #fbf1e2;
+	--tertiary-color: #b7b4a0;
+	--caramel-color: #d8a06d;
+	--rose-color: #e8c1b0;
+	--cocoa-color: #70534b;
+}
+
 @layer base {
 	html {
 		@apply font-body;
@@ -21,6 +30,33 @@
 		@apply text-tertiary;
 		scroll-behavior: smooth;
 	}
+}
+
+.no-scroll-bar::-webkit-scrollbar {
+	display: none;
+}
+
+::-webkit-scrollbar {
+	width: 4px;
+	height: 4px;
+	/* Width of the scrollbar */
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+	background-color: var(--primary-color);
+	/* Color of the scrollbar handle */
+	border-radius: 8px;
+	/* Rounded corners */
+	border: 2px solid var(--primary-color);
+	/* Space around the handle */
+}
+
+/* Style the scrollbar on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: var(--caramel-color);
+	border: 2px solid var(--caramel-color);
+	/* Darker color on hover */
 }
 
 @keyframes ringing {
@@ -77,27 +113,26 @@
 	}
 }
 
-
 .fence-item {
 	transform: translateY(100%);
 	animation: fence 1s ease-in-out forwards;
 }
 
 @keyframes hero-slide-in {
-  0% {
-    transform: translate(-50%, 200%);
-    opacity: 0;
-  }
+	0% {
+		transform: translate(-50%, 200%);
+		opacity: 0;
+	}
 
-  50% {
-    opacity: 0.8;
-    transform: translate(-50%, -30%) scale(1.1);
-  }
+	50% {
+		opacity: 0.8;
+		transform: translate(-50%, -30%) scale(1.1);
+	}
 
-  60% {
-    opacity: 0.9;
-    transform: translate(-50%, -35%) scale(1.2) rotate(5deg);
-  }
+	60% {
+		opacity: 0.9;
+		transform: translate(-50%, -35%) scale(1.2) rotate(5deg);
+	}
 
 	70% {
 		opacity: 1;
@@ -109,39 +144,45 @@
 		transform: translate(-50%, -38%) scale(1.1) rotate(-5deg);
 	}
 
-  90% {
-    opacity: 1;
-    transform: translate(-50%, -38%) scale(1) rotate(0deg);
-  }
+	90% {
+		opacity: 1;
+		transform: translate(-50%, -38%) scale(1) rotate(0deg);
+	}
 
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -40%);
-  }
+	100% {
+		opacity: 1;
+		transform: translate(-50%, -40%);
+	}
 }
 
 .hero-heading-text {
 	opacity: 0;
-	text-shadow: 
-    0 0 5px #fff, 
-    0 0 10px #fff, 
-    0 0 15px #c5948c, 
-    0 0 20px #c5948c, 
-    0 0 30px #c5948c, 
-    0 0 40px #c5948c;
-	animation:hero-slide-in 1.2s ease-in-out forwards;
-	animation-delay:3s;
-  transform: translate(-50%, 200%); /* Keep X translation */
+	transform: translate(-50%, 200%);
 }
 
-.text-shadow-primary{
-	text-shadow: 
-    0 0 5px #fff, 
-    0 0 10px #fff, 
-    0 0 15px #c5948c, 
-    0 0 20px #c5948c, 
-    0 0 30px #c5948c, 
-    0 0 40px #c5948c;
+.animation-element.hero-heading-text.in-view {
+	opacity: 0;
+	text-shadow:
+		0 0 5px #fff,
+		0 0 10px #fff,
+		0 0 15px #c5948c,
+		0 0 20px #c5948c,
+		0 0 30px #c5948c,
+		0 0 40px #c5948c;
+	animation: hero-slide-in 1.2s ease-in-out forwards;
+	animation-delay: 3s;
+	transform: translate(-50%, 200%);
+	/* Keep X translation */
+}
+
+.text-shadow-primary {
+	text-shadow:
+		0 0 5px #fff,
+		0 0 10px #fff,
+		0 0 15px #c5948c,
+		0 0 20px #c5948c,
+		0 0 30px #c5948c,
+		0 0 40px #c5948c;
 }
 
 
@@ -149,83 +190,108 @@
 
 @keyframes bounce {
 	0% {
-		transform: translate(-50%,0);
+		transform: translate(-50%, 0);
 	}
 
 	50% {
-		transform: translate(-50%,-10px);
+		transform: translate(-50%, -10px);
 	}
 
 	100% {
-		transform: translate(-50%,0);
+		transform: translate(-50%, 0);
 	}
 }
 
 .bounce {
-	animation: bounce 1s infinite;
+	opacity: 0;
+	transform: translate(-50%, 0);
+}
+
+.animation-element.bounce.in-view {
+	transform: translate(-50%, 0);
+	animation: hero-subtitle-slide-in 0.8s ease-in-out forwards, bounce 1s infinite 0.8s;
 }
 
 
-@keyframes hero-subtitle-slide-in{
-	0%{
-		transform: translate(-50%,100%);
+@keyframes hero-subtitle-slide-in {
+	0% {
+		transform: translate(-50%, 100%);
 		opacity: 0;
 	}
 
-	100%{
-		transform: translate(-50%,0);
+	100% {
+		transform: translate(-50%, 0);
 		opacity: 1;
 	}
 
 }
 
-.hero-subtitle-text{
-	opacity:0;
+.hero-subtitle-text {
+	opacity: 0;
+	transform: translate(-50%, 100%);
+}
+
+.animation-element.hero-subtitle-text.in-view {
+	opacity: 0;
+	transform: translate(-50%, 100%);
 	animation: hero-subtitle-slide-in 0.8s ease-in-out forwards;
-	transform: translate(-50%,100%);
 	animation-delay: 2s;
 }
 
 .hero-buttons {
-	opacity:0;
-	transform: translate(-50%,100%);
+	opacity: 0;
+	transform: translate(-50%, 100%);
+}
+
+.animation-element.hero-buttons.in-view {
+	opacity: 0;
+	transform: translate(-50%, 100%);
 	animation: hero-subtitle-slide-in 0.8s ease-in-out forwards;
 	animation-delay: 2.3s;
 }
 
-@keyframes menu-btn-shake{
-	0%{
+@keyframes menu-btn-shake {
+	0% {
 		transform: rotate(5deg);
 	}
 
-	10%{
+	10% {
 		transform: rotate(-5deg);
 	}
-	20%{
+
+	20% {
 		transform: rotate(4deg);
 	}
-	30%{
+
+	30% {
 		transform: rotate(-4deg);
 	}
-	40%{
+
+	40% {
 		transform: rotate(3deg);
 	}
-	50%{
+
+	50% {
 		transform: rotate(-3deg);
 	}
-	60%{
+
+	60% {
 		transform: rotate(2deg);
 	}
-	70%{
+
+	70% {
 		transform: rotate(-2deg);
 	}
-	80%{
+
+	80% {
 		transform: rotate(1deg);
 	}
-	90%{
+
+	90% {
 		transform: rotate(-1deg);
 	}
-	100%{
+
+	100% {
 		transform: rotate(0deg);
 	}
 }
@@ -236,54 +302,63 @@
 
 
 .sidebar {
-    position: absolute; /* Ensure it's positioned correctly */
-    top: 0;
-    left: 0;
-    width: 100%; /* Full width by default */
-    height: 100vh; /* Full height by default */
-    clip-path: circle(0 at 100% 0); /* Hidden by default */
-    z-index: 100;
-    pointer-events: none; /* Not interactive when closed */
+	position: absolute;
+	/* Ensure it's positioned correctly */
+	top: 0;
+	left: 0;
+	width: 100%;
+	/* Full width by default */
+	height: 100vh;
+	/* Full height by default */
+	clip-path: circle(0 at 100% 0);
+	/* Hidden by default */
+	z-index: 100;
+	pointer-events: none;
+	/* Not interactive when closed */
 }
 
 .sidebar.open {
-    animation: open-sidebar-animation 0.8s linear forwards;
-    pointer-events: auto; /* Interactive when open */
-    z-index: 1000;
+	animation: open-sidebar-animation 0.8s linear forwards;
+	pointer-events: auto;
+	/* Interactive when open */
+	z-index: 1000;
 }
 
 .sidebar.close {
-    animation: close-sidebar-animation 0.8s linear forwards;
-    pointer-events: none; /* Not interactive when closing */
-    z-index: 0;
+	animation: close-sidebar-animation 0.8s linear forwards;
+	pointer-events: none;
+	/* Not interactive when closing */
+	z-index: 0;
 }
 
 @keyframes open-sidebar-animation {
-  0% {
-    clip-path: circle(0 at 100% 0);
-  }
-  100% {
-    clip-path: circle(12000px at 100% 0);
-  }
+	0% {
+		clip-path: circle(0 at 100% 0);
+	}
+
+	100% {
+		clip-path: circle(12000px at 100% 0);
+	}
 }
 
 @keyframes close-sidebar-animation {
-  0% {
-    clip-path: circle(12000px at 100% 0);
-  }
-  100% {
-    clip-path: circle(0 at 100% 0);
-  }
+	0% {
+		clip-path: circle(12000px at 100% 0);
+	}
+
+	100% {
+		clip-path: circle(0 at 100% 0);
+	}
 }
 
 .navbar-link:hover {
-	text-shadow: 
-    0 0 5px #fff, 
-    0 0 10px #fff, 
-    0 0 15px #c5948c, 
-    0 0 20px #c5948c, 
-    0 0 30px #c5948c, 
-    0 0 40px #c5948c;
+	text-shadow:
+		0 0 5px #fff,
+		0 0 10px #fff,
+		0 0 15px #c5948c,
+		0 0 20px #c5948c,
+		0 0 30px #c5948c,
+		0 0 40px #c5948c;
 
 }
 
@@ -297,87 +372,103 @@
 /* Wrapper to set up the 3D space */
 /* Wrapper to set up the 3D space */
 .birthday-info-wrapper {
-    perspective: 1000px; /* Defines the depth of the 3D space */
-    transform-style: preserve-3d; /* Ensures child elements stay in 3D */
+	perspective: 1000px;
+	/* Defines the depth of the 3D space */
+	transform-style: preserve-3d;
+	/* Ensures child elements stay in 3D */
 }
 
 /* Main card container */
 .birthday-info {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d; /* Keeps 3D transforms for pseudo-elements */
-    transform: rotateX(-5deg) rotateY(30deg); /* Tilt the card */
-    transition: transform 0.3s ease; /* Smooth transition on hover */
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	/* Keeps 3D transforms for pseudo-elements */
+	transform: rotateX(-5deg) rotateY(30deg);
+	/* Tilt the card */
+	transition: transform 0.3s ease;
+	/* Smooth transition on hover */
 }
 
 /* Front face of the card */
 .birthday-info::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-		background: rgba(251, 241, 226,0.1);
-    backdrop-filter: blur(10px); /* Glassy effect */
-    border-radius: 1rem;
-    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3); /* Shadow for depth */
-    border: 1px solid rgba(251, 241, 226, 0.1);
-    transform: translateZ(10px); /* Raise it slightly forward */
-		transition: background 0.3s ease;
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(251, 241, 226, 0.1);
+	backdrop-filter: blur(10px);
+	/* Glassy effect */
+	border-radius: 1rem;
+	box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
+	/* Shadow for depth */
+	border: 1px solid rgba(251, 241, 226, 0.1);
+	transform: translateZ(10px);
+	/* Raise it slightly forward */
+	transition: background 0.3s ease;
 }
 
 /* Back face to simulate thickness */
 .birthday-info::after {
-    content: '';
-    position: absolute;
-		top:0;
-		left:0;
-    width: 100%;
-    height: 100%;
-		background: rgba(197, 148, 140,0.1);
-    border-radius: 1rem;
-    transform: translateZ(-10px); /* Push it slightly back */
-		transition: background 0.3s ease;
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(197, 148, 140, 0.1);
+	border-radius: 1rem;
+	transform: translateZ(-10px);
+	/* Push it slightly back */
+	transition: background 0.3s ease;
 }
 
 /* Text container */
 .birthday-info-text {
-    position: relative;
-    transform: translateZ(20px); /* Lift the text above the front face */
-    transition: transform 0.3s ease; /* Smooth movement on hover */
-    /*text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Shadow for readability */
-    padding: 1rem 4rem 1rem 1rem; /* Padding for spacing */
-    z-index: 1; /* Ensure text stays on top */
-		color:rgba(197, 148, 140, 0.1)
+	position: relative;
+	transform: translateZ(20px);
+	/* Lift the text above the front face */
+	transition: transform 0.3s ease;
+	/* Smooth movement on hover */
+	/*text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Shadow for readability */
+	padding: 1rem 4rem 1rem 1rem;
+	/* Padding for spacing */
+	z-index: 1;
+	/* Ensure text stays on top */
+	color: rgba(197, 148, 140, 0.1)
 }
 
 /* Hover effects for extra 3D pop */
 .birthday-info:hover {
-    transform: rotateX(-5deg) rotateY(20deg); /* Tilt the card */
+	transform: rotateX(-5deg) rotateY(20deg);
+	/* Tilt the card */
 }
 
 .birthday-info:hover::before {
-		background: rgba(251, 241, 226, 0.9);
-    border: 1px solid rgba(251, 241, 226, 0.3);
-		transition: transform 0.3s ease;
+	background: rgba(251, 241, 226, 0.9);
+	border: 1px solid rgba(251, 241, 226, 0.3);
+	transition: transform 0.3s ease;
 }
 
 .birthday-info:hover .birthday-info-text {
-    transform: translateZ(30px); /* Push text further forward on hover */
-		text-shadow: 
-			0 0 5px #fff, 
-			0 0 10px #fff, 
-			0 0 15px #c5948c, 
-			0 0 20px #c5948c, 
-			0 0 30px #c5948c, 
-			0 0 40px #c5948c;
-		transition: transform 0.3s ease;
-		color:rgba(197, 148, 140, 1)
+	transform: translateZ(30px);
+	/* Push text further forward on hover */
+	text-shadow:
+		0 0 5px #fff,
+		0 0 10px #fff,
+		0 0 15px #c5948c,
+		0 0 20px #c5948c,
+		0 0 30px #c5948c,
+		0 0 40px #c5948c;
+	transition: transform 0.3s ease;
+	color: rgba(197, 148, 140, 1)
 }
 
 .birthday-info:hover::after {
-		background: rgba(197, 148, 140, 0.7); /* Darken the back face */
-		transition: background 0.3s ease;
+	background: rgba(197, 148, 140, 0.7);
+	/* Darken the back face */
+	transition: background 0.3s ease;
 }
 
 
@@ -395,7 +486,98 @@
 
 .slide-in {
 	opacity: 0;
+}
+
+.animation-element.slide-in.in-view {
+	opacity: 0;
 	animation: slide-in 0.8s ease-in-out forwards;
 }
 
 
+.event-wrapper {
+	position: absolute;
+	bottom: 10%;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+.event {
+	height: 20px;
+	width: 20px;
+	background-color: var(--primary-color);
+	/* Assuming you have this defined, e.g. */
+	border-radius: 50%;
+	cursor: pointer;
+	/* Makes it clear the dots are clickable */
+	transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+	/* Smooth scaling and color transition */
+}
+
+.event:hover {
+	transform: scale(1.5);
+	transition: transform 0.3s ease-in-out;
+	/* Slight grow on hover for feedback */
+}
+
+.event.selected {
+	transform: scale(1.5);
+	/* Larger size when selected */
+	background-color: var(--accent-color, var(--secondary-color));
+	/* Optional: Change color when selected */
+}
+
+/* Optional: Add a subtle pulse animation for the selected dot */
+@keyframes pulse {
+	0% {
+		transform: scale(1.5);
+	}
+
+	50% {
+		transform: scale(1.7);
+	}
+
+	100% {
+		transform: scale(1.5);
+	}
+}
+
+.event.selected {
+	animation: pulse 1s infinite ease-in-out;
+	/* Pulsing effect when selected */
+}
+
+
+#shadow_cake_1,
+#shadow_cake_2,
+#shadow_cake_3,
+#shadow_cake_4,
+#shadow_cake_5,
+#shadow_cake_6,
+#shadow_cake_7,
+#shadow_cake_8 {
+	stroke: var(--primary-color);
+	stroke-width: 0.5px;
+	pointer-events: all;
+	transition: filter 0.3s ease-in-out;
+	/* Smooth transition for the glow */
+}
+
+#shadow_cake_1:hover,
+#shadow_cake_2:hover,
+#shadow_cake_3:hover,
+#shadow_cake_4:hover,
+#shadow_cake_5:hover,
+#shadow_cake_6:hover,
+#shadow_cake_7:hover,
+#shadow_cake_8:hover {
+	stroke-width: 3px;
+	cursor: pointer;
+	filter: url(#glow);
+	/* Apply the glow filter on hover */
+}

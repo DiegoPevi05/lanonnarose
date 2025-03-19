@@ -3,6 +3,7 @@ import {Logo} from '../assets/images';
 import Cake from '../assets/images/cake_6.svg';
 import { XIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import ScrollToSectionButton from './ui/ScrollToSectionButton';
 
 interface INavigation {
   name: string;
@@ -11,11 +12,11 @@ interface INavigation {
 }
 
 const navigation:INavigation[] = [
-  { name: 'home',label:'Home', href: '#' },
-  { name: 'us', label:'Us',href: '#us' },
-  { name: 'catalog',label:'Catalog', href: '#catalog' },
-  { name: 'blog',label:'Blog' ,href: '#blog' },
-  { name: 'contact',label:'Contact Us', href: '#contact' }
+  { name: 'home',label:'navbar.home', href: 'hero-section' },
+  { name: 'events', label:'navbar.events',href: 'events' },
+  { name: 'catalog',label:'navbar.catalog', href: 'catalog' },
+  { name: 'cart',label:'navbar.cart' ,href: 'cart' },
+  { name: 'contact',label:'navbar.contact_us', href: 'contact_us' }
 ]
 
 const Navbar: FC = () => {
@@ -31,17 +32,17 @@ const Navbar: FC = () => {
 
 
   return(
-      <div className="fixed top-0 z-[140] w-full h-auto max-h-screen relative bg-transparent">
+      <div className="pointer-events-none fixed top-0 bottom-0 left-0 right-0 z-[140] w-full h-auto max-h-screen bg-transparent">
         <button 
           id="btn_open_navbar" 
           onClick={onToggleNavbar}
-          className="absolute top-12 right-12 w-24 h-24">
+          className="absolute top-12 right-12 w-24 h-24 pointer-events-auto">
           <img src={Cake} alt="cake_open_navbar" className="menu-btn h-16 sm:h-24 w-auto"/> 
         </button>
         <section 
           id="navbar" 
           className={`
-          absolute top-0 left-0 
+          absolute 
           px-24 py-12
           m-0
           sidebar bg-secondary overflow-hidden
@@ -65,12 +66,13 @@ const Navbar: FC = () => {
 
             <ul className='mt-auto flex flex-col items-start justify-start gap-y-4'>
               {navigation.map((item,index)=>(
-                <a key={"Link_"+index} 
-                  href={item.href}
+                <ScrollToSectionButton key={"Link_"+index} 
+                  sectionId={item.href}
+                  onHandle={onToggleNavbar}
                 >
                   <li key={"Link_"+item.name} 
                   className="navbar-link text-5xl font-bold font-heading text-primary hover:text-rose ease-in-out duration-300">{t(item.label)}</li>
-                </a>
+                </ScrollToSectionButton>
               ))}
             </ul>
           </nav>

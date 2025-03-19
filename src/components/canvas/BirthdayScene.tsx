@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, useGLTF } from '@react-three/drei';
+import {  useGLTF } from '@react-three/drei';
+import { ClipboardList, Cake as IconCake } from 'lucide-react';
 import * as THREE from 'three';
 
 const vertexShader = `
@@ -143,7 +144,7 @@ const Cake = () => {
               intensity={1}    // Adjust intensity for glow effect
               distance={1.5}       // Limit the light's reach
               decay={3}          // Smooth falloff
-              color="0xffaa33"     // Warm color for candle glow
+              color="#ffaa33"     // Warm color for candle glow
               castShadow={true}
             />
             <pointLight
@@ -151,7 +152,7 @@ const Cake = () => {
               intensity={1}    // Adjust intensity for glow effect
               distance={1.5}       // Limit the light's reach
               decay={3}          // Smooth falloff
-              color="0xffaa33"     // Warm color for candle glow
+              color="#ffaa33"     // Warm color for candle glow
               castShadow={true}
             />
             {/* Circle to mark candle position */}
@@ -175,7 +176,7 @@ const BirthdayScene = () => {
   }, []);
 
   return (
-    <div className="h-[100vh] w-full relative">
+    <div id="event-0" className="h-full min-w-[100vw] relative">
       <Canvas
         gl={(canvas) => {
           const renderer = new THREE.WebGLRenderer({
@@ -207,7 +208,7 @@ const BirthdayScene = () => {
         <p className='text-primary font-heading text-6xl text-shadow-primary'>Events</p>
       </div>
       <div className='absolute top-[20%] right-[5rem] transform -translate-x-1/2 -translate-y-1/2'>
-        <p className='text-primary font-heading text-6xl text-shadow-primary slide-in'>Happy Birthday</p>
+        <p className='text-primary font-heading text-6xl text-shadow-primary animation-element slide-in'>Happy Birthday</p>
       </div>
       <div className='
         absolute 
@@ -227,11 +228,13 @@ const BirthdayScene = () => {
               We can make your birthday special by sharing a cake with you. It's a special day for you and for all of us who love you. We bring you different cakes that you can enjoy with your loved ones.
             </p>
             <div className='w-full h-auto flex flex-row justify-between items-center mt-4'>
-              <button className='font-heading border-2 border-primary text-primary px-5 py-2 rounded-lg hover:bg-primary hover:text-white transition-all duration-300 ease-in-out active:scale-95'>
-                See Catalog
+              <button className='font-heading border-2 border-primary text-primary px-5 py-2 rounded-lg hover:bg-primary hover:text-white transition-all duration-300 ease-in-out active:scale-95 inline-flex gap-x-2'>
+                <ClipboardList/>
+                Catalog
               </button>
-              <button className='font-heading border-2 border-cocoa text-cocoa px-5 py-2 rounded-lg hover:bg-cocoa hover:text-white transition-all duration-300 ease-in-out active:scale-95'>
-                See Birthday Cakes
+              <button className='font-heading border-2 border-cocoa text-cocoa px-5 py-2 rounded-lg hover:bg-cocoa hover:text-white transition-all duration-300 ease-in-out active:scale-95 inline-flex gap-x-2'>
+                <IconCake />
+                Birthday Cakes
               </button>
             </div>
           </div>

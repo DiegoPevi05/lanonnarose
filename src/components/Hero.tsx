@@ -5,6 +5,7 @@ import {useTranslation} from 'react-i18next'
 import {calculateHeroFenceTopAndDelay} from '../lib/utils';
 import {useEffect, useState} from 'react';
 import { ChevronDown } from 'lucide-react';
+import ScrollToSectionButton from './ui/ScrollToSectionButton';
 //import AnimatedComponent from './ui/AnimatedComponent';
 
 
@@ -44,6 +45,7 @@ const Hero = (props:HeroCompProps) => {
       >
             <h1 className="
               hero-heading-text
+              animation-element
               text-6xl sm:text-8xl 
               text-primary
               text-center
@@ -58,6 +60,7 @@ const Hero = (props:HeroCompProps) => {
             </h1>
             <p className="
               hero-subtitle-text
+              animation-element
               text-white
               bg-primary 
               rounded-lg
@@ -72,11 +75,18 @@ const Hero = (props:HeroCompProps) => {
             <div className="
               absolute
               hero-buttons
+              animation-element
               top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2
               flex flex-row gap-5
             ">
-              <Link className="text-sm sm:text-md gap-2" href="#catalog"><ClipboardList/>{t('See Catalog')}</Link>
-              <Link className="text-sm sm:text-md gap-2" href="https://api.whatsapp.com/send?phone=19162892853&text=Hola%20Nonna%20Rose" target="_blank"><Phone/>{t('Send Message')}</Link>
+
+              <ScrollToSectionButton sectionId='catalog' className='font-heading border-2 border-primary text-primary px-5 py-2 rounded-lg bg-secondary hover:bg-primary hover:text-white transition-all duration-300 ease-in-out active:scale-95 inline-flex gap-x-2'>
+                <ClipboardList/>
+                {t('See Catalog')}
+              </ScrollToSectionButton>
+              <a href="https://api.whatsapp.com/send?phone=19162892853&text=Hola%20Nonna%20Rose" target="_blank" className='font-heading border-2 bg-secondary border-cocoa text-cocoa px-5 py-2 rounded-lg hover:bg-cocoa hover:text-white transition-all duration-300 ease-in-out active:scale-95 inline-flex gap-x-2'>
+                <Phone/>{t('Send Message')}
+              </a>
             </div>
         <div
           className="
@@ -87,14 +97,19 @@ const Hero = (props:HeroCompProps) => {
             z-[50]
           "
         >
-          <span className="
-            bounce
+          <ScrollToSectionButton  
+            sectionId="events"
+            className="
             h-auto
             w-auto
             absolute
             bottom-[30%]
             bg-secondary
             text-primary
+            duration-300
+            hover:bg-primary
+            hover:text-secondary
+            hover:border-secondary
             border-2 border-primary
             p-1
             inline-flex
@@ -104,9 +119,11 @@ const Hero = (props:HeroCompProps) => {
             left-1/2 -translate-x-1/2 -translate-y-1/2
             z-[80]
             cursor-pointer
+            animation-element
+            bounce
             ">
             <ChevronDown className='h-10 w-10'/>
-          </span>
+          </ScrollToSectionButton>
           {fenceItems.map((_, i) => {
             const { topValue, delay } = calculateHeroFenceTopAndDelay(
               fenceItems.length, i, 6, topDistance, 0.05, 20);

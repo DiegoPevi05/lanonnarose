@@ -9,25 +9,21 @@
   "Catalog": "Catalog",
   "Spanish": "Spanish",
   "English": "English",
-  "Price":"Price",
-  "View Detail":"View Detail",
-
+  "Price": "Price",
+  "View Detail": "View Detail",
   "Hi, I'm": "Hi, I'm",
   "Welcome to my Page": "Welcome to my Page",
   "See Catalog": "See Catalog",
   "Send Message": "Order Now",
-
   "Catalog": "Catalog",
   "Cakes": "Cakes",
   "Deserts": "Deserts",
   "Others": "Others",
-  "See Full Catalog":"See Full Catalog",
-  "Go Home Page":"Go Home Page",
-
-  "Detail":"Details",
-  "BulletPoints":"Important Points",
-  "Dated the ":"Dated the ",
-
+  "See Full Catalog": "See Full Catalog",
+  "Go Home Page": "Go Home Page",
+  "Detail": "Details",
+  "BulletPoints": "Important Points",
+  "Dated the ": "Dated the ",
   "Information": "Information",
   "Contact Us": "Contact Us",
   "Name": "Name",
@@ -36,5 +32,14 @@
   "What is your email?": "What is your email?",
   "Message": "Message",
   "What you want to say?": "What you want to say?",
-  "Send": "Send"
+  "Send": "Send",
+  "navbar": {
+    "home": "Home",
+    "events": "Events",
+    "contact_us": "Contact Us",
+    "catalog": "Catalog",
+    "cart": "Cart",
+    "Spanish": "Spanish",
+    "English": "English"
+  }
 }
