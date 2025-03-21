@@ -17,7 +17,7 @@ const Events = () => {
 
     // Scroll to the corresponding event section
     if (scrollContainerRef.current) {
-      const scrollPosition = index * window.innerWidth; // Each section is 100vw wide
+      const scrollPosition = index * (window.innerWidth + 80); // Each section is 100vw wide
       scrollContainerRef.current.scrollTo({
         left: scrollPosition,
         behavior: "smooth",
@@ -30,15 +30,17 @@ const Events = () => {
       <div 
         ref={scrollContainerRef}
         className="flex flex-row items-start justify-start h-[100vh] w-full overflow-x-scroll no-scroll-bar">
-        <BirthdayScene />
         <div id="event-1" className="flex flex-col items-center justify-center min-w-[100vw] h-full">
 
         </div>
-
+        <span className="!min-w-[80px] h-full bg-events-gradient-1"></span>
+        <BirthdayScene />
+        <span className="!min-w-[80px] h-full bg-events-gradient-2"></span>
         <div id="event-2" className="flex flex-col items-center justify-center min-w-[100vw] h-full">
 
         </div>
 
+        <span className="!min-w-[80px] h-full bg-events-gradient-1"></span>
         <div id="event-3" className="flex flex-col items-center justify-center min-w-[100vw] h-full">
 
         </div>

@@ -11,6 +11,8 @@ import {WebData} from '../interfaces'
 import {getScreenSize} from '../lib/utils';
 import Events from '../components/Events';
 import Catalog from '../components/NewCatalog';
+import products from '../lib/data';
+import ShoppingCart from '../components/Cart';
 
 interface HomeProps {
   webData: WebData | undefined;
@@ -41,7 +43,6 @@ const Home:FC<HomeProps> = () => {
   useEffect(() => {
     // Select elements after mount
     const animationElements = document.querySelectorAll('.animation-element');
-    console.log('Animation elements found:', animationElements.length);
 
     if (animationElements.length === 0) {
       console.warn('No .animation-element found in the DOM!');
@@ -53,7 +54,6 @@ const Home:FC<HomeProps> = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log('Adding in-view to:', entry.target);
             entry.target.classList.add('in-view');
           }         
         });
@@ -79,10 +79,11 @@ const Home:FC<HomeProps> = () => {
 
   return(
     <div className='relative'>
+      <ShoppingCart/>
       <Navbar/>
       <Hero windowSize={windowSize} title={"Bienvenido a La Nona Rose"} content="Encuentra los mejores postres que puedas encontrar"/>
       <Events/>
-      <Catalog/>
+      <Catalog products={products}/>
       {/*
         <About webContent={webData.webContent}/>
         <Catalog webContent={webData.webContent} products={webData.products} isSection={false} />

@@ -548,6 +548,7 @@
 }
 
 .event.selected {
+	border: 2px solid var(--primary-color);
 	animation: pulse 1s infinite ease-in-out;
 	/* Pulsing effect when selected */
 }
@@ -580,4 +581,34 @@
 	cursor: pointer;
 	filter: url(#glow);
 	/* Apply the glow filter on hover */
+}
+
+#shadow_cake_1.selected,
+#shadow_cake_2.selected,
+#shadow_cake_3.selected,
+#shadow_cake_4.selected,
+#shadow_cake_5.selected,
+#shadow_cake_6.selected,
+#shadow_cake_7.selected,
+#shadow_cake_8.selected {
+	stroke-width: 3px;
+	cursor: pointer;
+	filter: url(#glow);
+	/* Smooth transition for the glow */
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		scale: 0.8;
+	}
+
+	100% {
+		opacity: 1;
+		scale: 1;
+	}
+}
+
+.fade-in {
+	animation: fadeIn 0.8s ease-in-out forwards;
 }
