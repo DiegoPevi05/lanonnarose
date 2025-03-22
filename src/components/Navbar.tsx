@@ -13,9 +13,9 @@ interface INavigation {
 
 const navigation:INavigation[] = [
   { name: 'home',label:'navbar.home', href: 'hero-section' },
+  { name: 'about_us',label:'navbar.about_us' ,href: 'about_us' },
   { name: 'events', label:'navbar.events',href: 'events' },
   { name: 'catalog',label:'navbar.catalog', href: 'catalog' },
-  { name: 'cart',label:'navbar.cart' ,href: 'cart' },
   { name: 'contact',label:'navbar.contact_us', href: 'contact_us' }
 ]
 

@@ -1,17 +1,14 @@
 import { FC,useState, useEffect} from 'react';
 import Hero from '../components/Hero';
 import Navbar from '../components/Navbar';
-//import Catalog from '../components/Catalog';
-//import Contact from '../components/Contact';
-//import About from '../components/About';
-//import Blog from '../components/Blog';
 import {WebData} from '../interfaces'
-//import Loader from '../components/ui/Loader';
-//import { useLoader } from '../contexts/loader';
+import { useLoader } from '../contexts/loader';
 import {getScreenSize} from '../lib/utils';
+import About from '../components/About';
 import Events from '../components/Events';
-import Catalog from '../components/NewCatalog';
+import Catalog from '../components/Catalog';
 import products from '../lib/data';
+import Contact from '../components/Contact';
 import ShoppingCart from '../components/Cart';
 
 interface HomeProps {
@@ -82,14 +79,10 @@ const Home:FC<HomeProps> = () => {
       <ShoppingCart/>
       <Navbar/>
       <Hero windowSize={windowSize} title={"Bienvenido a La Nona Rose"} content="Encuentra los mejores postres que puedas encontrar"/>
+      <About/>
       <Events/>
       <Catalog products={products}/>
-      {/*
-        <About webContent={webData.webContent}/>
-        <Catalog webContent={webData.webContent} products={webData.products} isSection={false} />
-        <Blog webContent={webData.webContent} blogs={webData.blogs}/>
-        <Contact/>
-      */}
+      <Contact/>
     </div>
   )
 

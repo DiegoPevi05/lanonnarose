@@ -40,7 +40,7 @@ const Hero = (props:HeroCompProps) => {
   return(
       <section
         id="hero-section"
-        className="relative w-full h-[100vh] mx-auto overflow-hidden bg-hero bg-repeat z-[120]"
+        className="relative w-full h-[100vh] mx-auto bg-hero bg-repeat z-[120]"
         style={{ backgroundSize: '250px 250px' }}
       >
             <h1 className="
@@ -98,7 +98,7 @@ const Hero = (props:HeroCompProps) => {
           "
         >
           <ScrollToSectionButton  
-            sectionId="events"
+            sectionId="about_us"
             className="
             h-auto
             w-auto
@@ -133,7 +133,7 @@ const Hero = (props:HeroCompProps) => {
                 style={{ top: `${topValue}%`, animationDelay: `${delay}s` }}
                 className={`
                   relative
-                  rounded-t-full
+                  rounded-full
                   shadow-lg
                   ${ i % 2 === 0 ? 'bg-fence-gradient-cocoa' : 'bg-fence-gradient'}
                   fence-item 

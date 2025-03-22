@@ -61,8 +61,10 @@ const Contact:FC = () => {
   };
 
   return (
-    <div
-      className={`xl:mt-0 h-full flex md:flex-row flex-col-reverse gap-0 lg:gap-10 overflow-hidden `}
+    <section
+      id="contact_us"
+      style={{ backgroundSize: '250px 250px' }}
+      className={`xl:mt-0 h-full w-full px-48 py-12 flex md:flex-row flex-col-reverse gap-0 lg:gap-10 overflow-hidden bg-hero bg-repeat`}
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
@@ -133,8 +135,8 @@ const Contact:FC = () => {
             className="w-full h-[140px] sm:h-[180px] lg:h-auto object-contain"
           />
       </motion.div>
-    </div>
+    </section>
   );
 };
 
-export default SectionWrapper(Contact, "contact");
+export default Contact;

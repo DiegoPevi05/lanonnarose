@@ -99,8 +99,6 @@ const ShoppingCart = () => {
 
   const {state} = useCart();
 
-  console.log(state.items);
-
   const [link, setLink] = useState<string>(generateWhatsAppLink(state.items));
 
   useEffect(()=>{

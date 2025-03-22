@@ -1,61 +1,72 @@
-import { motion } from "framer-motion";
-import { styles } from "../styles";
-import { SectionWrapper } from "../components/ui/hoc";
-import {  textVariant,slideIn } from "../lib/motions";
-import { LogoAbout  } from "../assets/images"
-import {Facebook,Youtube,Instagram} from "lucide-react";
-import {useTranslation} from 'react-i18next'
-import { webContentLanguage } from "../interfaces";
+import React from "react";
+import { useRef, useEffect } from "react";
+import AboutMain from "../assets/images/about_main.svg?react"
+import AboutMainBorderSVG from "../assets/images/about_bottom_border.svg?react"
 
+// Wrap AboutMainBorderSVG with forwardRef to pass the ref to the <svg> element
+const AboutMainBorderWithRef = React.forwardRef((props:any, ref:any) => (
+  <AboutMainBorderSVG {...props} ref={ref} />
+));
 
-interface AboutCompProps {
-  webContent?: webContentLanguage[];
-}
-const About = (props:AboutCompProps) => {
-  const {webContent} = props;
-  const {i18n} = useTranslation();
+const About = () => {
+
+  const borderRef = useRef<null|SVGElement>(null); // Ref for the SVG element
+
+  useEffect(() => {
+    if (borderRef.current) {
+      // Select all <g> elements inside #cakes_border
+      const cakeElements = borderRef.current.querySelectorAll("#cakes_border > g");
+      const cakeArray = Array.from(cakeElements);
+
+      // Ensure we have 12 cakes
+      if (cakeArray.length === 12) {
+        // Add CSS animation styles dynamically
+        cakeArray.forEach((cake:any, index:number) => {
+          const cakeNum = parseInt(cake.id.split("_")[1]); // Extract number (1-12)
+          // Calculate delay: pair cake_1 with cake_12, cake_2 with cake_11, etc.
+          const pairDistance = Math.min(cakeNum - 1, 12 - cakeNum); // 0 for cake_1/cake_12, 5 for cake_6/cake_7
+          const delay = pairDistance * 0.2; // 0.2s stagger between pairs
+
+          // Apply initial state and animation
+          cake.style.transform = "translateY(50px)"; // Start 50px below
+          cake.style.opacity = "0"; // Start invisible
+          cake.style.animation = `rise 0.5s ease-out ${delay}s forwards`;
+        });
+
+        // Inject the keyframes into the document if not already present
+        if (!document.querySelector("#rise-keyframes")) {
+          const styleSheet = document.createElement("style");
+          styleSheet.id = "rise-keyframes";
+          styleSheet.textContent = `
+            @keyframes rise {
+              to {
+                transform: translateY(0);
+                opacity: 1;
+              }
+            }
+          `;
+          document.head.appendChild(styleSheet);
+        }
+      }
+    }
+  }, []);
 
   return (
-    <>
-      <div className="w-full h-full flex flex-col sm:flex-row overflow-hidden">
-        <div className="w-full h-full flex-col">
-          <motion.div
-            variants={slideIn("left", "tween", 0.2, 1)}
-            className='w-full flex items-center justify-center py-4 sm:py-0'
-          >
-            <img src={LogoAbout} alt='ImageAbout' className='relative w-full sm:w-[640px] h-[250px] sm:h-[640px] object-contain' />
-          </motion.div>
-        </div>
-        <motion.div 
-          variants={slideIn("right", "tween", 0.2, 1)}
-          className="w-full h-[400px] sm:h-[600px] flex-col rounded-[20px] p-4 sm:p-6 bg-primary">
-          <motion.div variants={textVariant()}>
-            <p className={`${styles.sectionSubText} text-white`}>
-             {webContent?.find((item) => item.language === i18n.language)?.content.find((item) => item.name === "AboutHeader")?.content ?? ''}
-            </p>
-            <h2 className={`${styles.sectionHeadText} text-secondary md:text-[50px]`}>La Nonna Rose</h2>
-          </motion.div>
-
-          <motion.p
-            className='mt-4 text-secondary text-justify text-[13px] leading-[15px] lg:text-[17px] lg:leading-[25px]'
-          >
-          {webContent?.find((item) => item.language === i18n.language)?.content.find((item) => item.name === "AboutDescription")?.content ?? ''}
-          </motion.p>
-          <motion.div className="flex flex-row w-full h-auto mt-2 md:mt-8">
-            <a id={"facebook"} href="#" target="_blank" className="flex w-auto h-auto justify-center cursor-pointer mx-auto">
-              <Facebook className={`${styles.sectionHeadText} text-secondary h-10 w-auto transform hover:-translate-y-2 transition-all duration-300`}/> 
-            </a>
-            <a id={"instagram"} href="#" target="_blank" className="flex w-auto h-auto justify-center cursor-pointer mx-auto">
-              <Instagram  className={`${styles.sectionHeadText} text-secondary h-10 w-auto transform hover:-translate-y-2 transition-all duration-300`}/> 
-            </a>
-            <a id={"Youtube"} href="#" target="_blank" className="flex w-auto h-auto justify-center cursor-pointer mx-auto">
-              <Youtube className={`${styles.sectionHeadText} text-secondary h-10 w-auto transform hover:-translate-y-2 transition-all duration-300`}/> 
-            </a>
-          </motion.div>
-        </motion.div>
-      </div>
-    </>
+    <section 
+      id="about_us"
+      style={{ backgroundSize: '250px 250px' }}
+      className="w-full h-[100vh] flex flex-col bg-hero bg-cover bg-center bg-repeat relative">
+      <AboutMain 
+        className="absolute left-0 bottom-0 w-full h-full"
+        preserveAspectRatio="xMidYMax meet"
+      />
+      <AboutMainBorderWithRef
+        ref={borderRef}
+        className="absolute -bottom-20 w-full h-full"
+        preserveAspectRatio="xMidYMax meet"
+      />
+    </section>
   );
 };
 
-export default SectionWrapper(About, "us");
+export default About;

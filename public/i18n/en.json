@@ -35,10 +35,10 @@
   "Send": "Send",
   "navbar": {
     "home": "Home",
+    "about_us": "About us",
     "events": "Events",
     "contact_us": "Contact Us",
     "catalog": "Catalog",
-    "cart": "Cart",
     "Spanish": "Spanish",
     "English": "English"
   }
