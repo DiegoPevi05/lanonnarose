@@ -31,6 +31,15 @@
 		scroll-behavior: smooth;
 	}
 }
+.scroll-snap-parent{
+  scroll-snap-type: y mandatory; /* or 'x' for horizontal scrolling */
+  overflow-y: auto; /* or overflow-x for horizontal */
+  height: 100vh; /* or any height to enable scrolling */
+}
+
+.scroll-snap-child {
+	scroll-snap-align: start;
+}
 
 .no-scroll-bar::-webkit-scrollbar {
 	display: none;
@@ -753,7 +762,7 @@
 .animation-element.girl.in-view{
 		transform-origin: center;
     animation: girl-middle-animation 0.8s ease-in-out forwards;
-		animation-delay:2.2s;
+		animation-delay:2.8s;
 }
 
 @keyframes clouds-slide-in-left {
@@ -796,9 +805,25 @@
 		animation-delay:2.4s;
 }
 
+@keyframes about-letters-animation{
+	0% {
+		opacity: 0;
+		transform: scale(0) translateX(-50%) rotate(-180deg);
+	}
+	50% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1) translateX(-50%) rotate(3deg);
+	}
+
+}
+
 .animation-element.about-letters.in-view {
 	opacity: 0;
 	transform-origin: center;
-	animation: fadeIn 0.8s ease-in-out forwards;
-	animation-delay: 2.2s;
+	transform: scale(0) translateX(-50%) rotate(-180deg);
+	animation: about-letters-animation 0.5s ease-in-out forwards;
+	animation-delay: 2.8s;
 }

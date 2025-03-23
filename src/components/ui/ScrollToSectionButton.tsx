@@ -11,10 +11,11 @@ const ScrollToSectionButton = ({ sectionId, offset = 0, children, className = ''
     if(onHandle){
       onHandle();
     };
+    const parentScroll = document.querySelector('.scroll-snap-parent');
     const section = document.getElementById(sectionId);
-    if (section) {
+    if (section && parentScroll) {
       const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
+      parentScroll.scrollTo({
         top: sectionTop - offset,
         behavior: 'smooth',
       });

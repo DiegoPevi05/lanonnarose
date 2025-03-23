@@ -1,6 +1,5 @@
 import { FC,useState, useEffect} from 'react';
 import Navbar from '../components/Navbar';
-import Catalog from '../components/Catalog';
 import {WebData} from '../interfaces'
 import Loader from '../components/ui/Loader';
 
@@ -27,7 +26,6 @@ const CatalogComponent:FC<CatalogComponentProps> = ({webData}) => {
     return(
       <>
         <Navbar/>
-        <Catalog webContent={webData.webContent} products={webData.products} isSection={true} />
       </>
     )
   }

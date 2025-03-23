@@ -2,7 +2,6 @@ import {FC, useState } from "react";
 import { motion } from "framer-motion";
 import {BirthdayCake} from "../assets/images"
 import { styles } from "../styles";
-import { SectionWrapper } from "./ui/hoc";
 import { slideIn } from "../lib/motions";
 import {toast} from "react-hot-toast";
 import Button from './ui/Button';
@@ -64,7 +63,7 @@ const Contact:FC = () => {
     <section
       id="contact_us"
       style={{ backgroundSize: '250px 250px' }}
-      className={`xl:mt-0 h-full w-full px-48 py-12 flex md:flex-row flex-col-reverse gap-0 lg:gap-10 overflow-hidden bg-hero bg-repeat`}
+      className={`xl:mt-0 h-full w-full px-48 py-12 flex md:flex-row flex-col-reverse gap-0 lg:gap-10 overflow-hidden bg-hero bg-repeat scroll-snap-child`}
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}

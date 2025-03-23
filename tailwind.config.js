@@ -23,6 +23,7 @@ export default {
       },
       backgroundImage: {
         "hero": "url('/src/assets/images/background-hero.png')",
+        "about-events": "linear-gradient(90deg, #fbf1e2 0%, #101005 100%)",
         "events-gradient-1": "linear-gradient(90deg, #fbf1e2 0%, #101005 100%)",
         "events-gradient-2": "linear-gradient(90deg, #101005 0%, #fbf1e2 100%)",
         "fence-gradient": "linear-gradient(-60deg, #e8c1b0 0% 90%,  #fff 100% 100%, #e8c1b0 98% 100%)",

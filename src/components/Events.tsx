@@ -26,7 +26,7 @@ const Events = () => {
   };
 
   return (
-    <section id="events" className="relative h-[100vh] w-full z-[100]">
+    <section id="events" className="relative h-[100vh] w-full z-[100] scroll-snap-child">
       <div 
         ref={scrollContainerRef}
         className="flex flex-row items-start justify-start h-[100vh] w-full overflow-x-scroll no-scroll-bar">

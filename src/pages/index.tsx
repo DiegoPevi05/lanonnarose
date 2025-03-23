@@ -2,7 +2,7 @@ import { FC,useState, useEffect} from 'react';
 import Hero from '../components/Hero';
 import Navbar from '../components/Navbar';
 import {WebData} from '../interfaces'
-import { useLoader } from '../contexts/loader';
+//import { useLoader } from '../contexts/loader';
 import {getScreenSize} from '../lib/utils';
 import About from '../components/About';
 import Events from '../components/Events';
@@ -75,7 +75,7 @@ const Home:FC<HomeProps> = () => {
 
 
   return(
-    <div className='relative'>
+    <div className='relative scroll-snap-parent'>
       <ShoppingCart/>
       <Navbar/>
       <Hero windowSize={windowSize} title={"Bienvenido a La Nona Rose"} content="Encuentra los mejores postres que puedas encontrar"/>

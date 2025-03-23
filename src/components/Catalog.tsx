@@ -98,7 +98,7 @@ const Catalog = (props:CatalogProps) => {
 
 
   return (
-    <section id="catalog" className="w-full min-h-screen bg-hero overflow-hidden relative"
+    <section id="catalog" className="w-full min-h-screen bg-hero overflow-hidden relative scroll-snap-child"
         style={{ backgroundSize: '250px 250px' }}
     >
         <div

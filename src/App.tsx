@@ -1,4 +1,4 @@
-import {Suspense, useEffect} from 'react';
+import {Suspense} from 'react';
 import Providers from './components/Providers';
 import Home from './pages';
 //import CatalogComponent from './pages/catalog';

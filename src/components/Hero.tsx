@@ -1,5 +1,5 @@
 //import { styles } from '../styles';
-import Link from '../components/ui/Link';
+//import Link from '../components/ui/Link';
 import { Phone, ClipboardList } from 'lucide-react';
 import {useTranslation} from 'react-i18next'
 import {calculateHeroFenceTopAndDelay} from '../lib/utils';
@@ -40,7 +40,7 @@ const Hero = (props:HeroCompProps) => {
   return(
       <section
         id="hero-section"
-        className="relative w-full h-[100vh] mx-auto bg-hero bg-repeat z-[120]"
+        className="relative w-full h-[100vh] mx-auto bg-hero bg-repeat z-[120] scroll-snap-child"
         style={{ backgroundSize: '250px 250px' }}
       >
             <h1 className="
