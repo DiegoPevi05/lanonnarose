@@ -1,55 +1,10 @@
-import React from "react";
-import { useRef, useEffect } from "react";
 import AboutMain from "../assets/images/about_main.svg?react"
 import AboutMainBorderSVG from "../assets/images/about_bottom_border.svg?react"
+import ScrollToSectionButton from "./ui/ScrollToSectionButton";
+import {ChevronDown} from "lucide-react";
 
-// Wrap AboutMainBorderSVG with forwardRef to pass the ref to the <svg> element
-const AboutMainBorderWithRef = React.forwardRef((props:any, ref:any) => (
-  <AboutMainBorderSVG {...props} ref={ref} />
-));
 
 const About = () => {
-
-  const borderRef = useRef<null|SVGElement>(null); // Ref for the SVG element
-
-  useEffect(() => {
-    if (borderRef.current) {
-      // Select all <g> elements inside #cakes_border
-      const cakeElements = borderRef.current.querySelectorAll("#cakes_border > g");
-      const cakeArray = Array.from(cakeElements);
-
-      // Ensure we have 12 cakes
-      if (cakeArray.length === 12) {
-        // Add CSS animation styles dynamically
-        cakeArray.forEach((cake:any, index:number) => {
-          const cakeNum = parseInt(cake.id.split("_")[1]); // Extract number (1-12)
-          // Calculate delay: pair cake_1 with cake_12, cake_2 with cake_11, etc.
-          const pairDistance = Math.min(cakeNum - 1, 12 - cakeNum); // 0 for cake_1/cake_12, 5 for cake_6/cake_7
-          const delay = pairDistance * 0.2; // 0.2s stagger between pairs
-
-          // Apply initial state and animation
-          cake.style.transform = "translateY(50px)"; // Start 50px below
-          cake.style.opacity = "0"; // Start invisible
-          cake.style.animation = `rise 0.5s ease-out ${delay}s forwards`;
-        });
-
-        // Inject the keyframes into the document if not already present
-        if (!document.querySelector("#rise-keyframes")) {
-          const styleSheet = document.createElement("style");
-          styleSheet.id = "rise-keyframes";
-          styleSheet.textContent = `
-            @keyframes rise {
-              to {
-                transform: translateY(0);
-                opacity: 1;
-              }
-            }
-          `;
-          document.head.appendChild(styleSheet);
-        }
-      }
-    }
-  }, []);
 
   return (
     <section 
@@ -60,11 +15,55 @@ const About = () => {
         className="absolute left-0 bottom-0 w-full h-full"
         preserveAspectRatio="xMidYMax meet"
       />
-      <AboutMainBorderWithRef
-        ref={borderRef}
-        className="absolute -bottom-20 w-full h-full"
+      <AboutMainBorderSVG 
+        className="absolute left-0 -bottom-6 w-full h-full scale-[1.2]"
         preserveAspectRatio="xMidYMax meet"
       />
+      <h1 className="
+        animation-element
+        about-letters
+        text-shadow-primary
+        text-6xl sm:text-8xl 
+        text-primary
+        font-heading 
+        left-1/2 -translate-x-1/2
+        rotate-[2deg]
+        text-wrap
+        bottom-[20%]
+        absolute
+        opacity-0
+        z-[120]
+      "
+      >
+        La Nona Rose
+      </h1>
+      <ScrollToSectionButton
+        sectionId="events"
+        className="
+        h-auto
+        w-auto
+        absolute
+        bottom-[5%]
+        bg-secondary
+        text-primary
+        duration-300
+        hover:bg-primary
+        hover:text-secondary
+        hover:border-secondary
+        border-2 border-primary
+        p-1
+        inline-flex
+        justify-center
+        items-center
+        rounded-full
+        left-1/2 -translate-x-1/2 -translate-y-1/2
+        z-[120]
+        cursor-pointer
+        animation-element
+        bounce
+        ">
+        <ChevronDown className='h-10 w-10'/>
+      </ScrollToSectionButton>
     </section>
   );
 };
