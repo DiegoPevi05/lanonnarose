@@ -68,6 +68,7 @@ const Hero = (props:HeroCompProps) => {
               absolute
               text-lg sm:text-xl
               text-center
+              w-[80%] sm:w-auto
               top-[50%] left-1/2 -translate-y-1/2
               ">
               {content}
@@ -77,7 +78,7 @@ const Hero = (props:HeroCompProps) => {
               hero-buttons
               animation-element
               top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2
-              flex flex-row gap-5
+              flex flex-col sm:flex-row gap-5
             ">
 
               <ScrollToSectionButton sectionId='catalog' className='font-heading border-2 border-primary text-primary px-5 py-2 rounded-lg bg-secondary hover:bg-primary hover:text-white transition-all duration-300 ease-in-out active:scale-95 inline-flex gap-x-2'>

@@ -31,10 +31,15 @@
 		scroll-behavior: smooth;
 	}
 }
-.scroll-snap-parent{
-  scroll-snap-type: y mandatory; /* or 'x' for horizontal scrolling */
-  overflow-y: auto; /* or overflow-x for horizontal */
-  height: 100vh; /* or any height to enable scrolling */
+
+.scroll-snap-parent {
+	scroll-snap-type: y mandatory;
+	/* or 'x' for horizontal scrolling */
+	overflow-y: auto;
+	/* or overflow-x for horizontal */
+	height: 100vh;
+	/* or any height to enable scrolling */
+	scroll-behavior: smooth;
 }
 
 .scroll-snap-child {
@@ -622,157 +627,97 @@
 	animation: fadeIn 0.8s ease-in-out forwards;
 }
 
-@keyframes slide-in-cake-animation {
-	0% {
-		opacity: 0;
-		transform: translateY(100%);
-	}
-
-	80% {
-		opacity: 1;
-		transform: translateY(-10%);
-	}
-
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-.animation-element.slide-in-cake.in-view{
-	opacity: 0;
-	transform: translateY(100%);
-	animation: slide-in-cake-animation 0.8s ease-in-out forwards;
-}
-
-.animation-element.slide-in-cake-1.in-view {
-    animation-delay: 1.3s;
-}
-
-.animation-element.slide-in-cake-2.in-view {
-    animation-delay: 1.5s;
-}
-
-.animation-element.slide-in-cake-3.in-view {
-    animation-delay: 1.7s;
-}
-
-.animation-element.slide-in-cake-4.in-view {
-    animation-delay: 1.9s;
-}
-
-.animation-element.slide-in-cake-5.in-view {
-    animation-delay: 2.1s;
-}
-
-.animation-element.slide-in-cake-6.in-view {
-    animation-delay: 2.3s;
-}
 
 
 
-@keyframes rainbow-clip-animation {
-    0% {
-        clip-path: inset(100% 0% 0% 0%); /* Start with only a thin strip visible at the bottom */
-        opacity: 0;
-    }
-    100% {
-        clip-path: inset(0% 0% 0% 0%); /* Reveal the entire rainbow */
-        opacity: 1;
-    }
-}
+
+
+
+
+
+
+
+
 
 .animation-element.rainbow.in-view {
-    animation: rainbow-clip-animation 1.5s ease-in-out forwards;
+	animation: rainbow-clip-animation 1.5s ease-in-out forwards;
 }
 
 .animation-element.rainbow-1.in-view {
-    animation-delay: 1.3s;
+	animation-delay: 1.3s;
 }
 
 .animation-element.rainbow-2.in-view {
-    animation-delay: 1.4s;
+	animation-delay: 1.4s;
 }
 
 .animation-element.rainbow-3.in-view {
-    animation-delay: 1.5s;
+	animation-delay: 1.5s;
 }
 
 .animation-element.rainbow-4.in-view {
-    animation-delay: 1.6s;
+	animation-delay: 1.6s;
 }
 
 
 @keyframes desk-animation {
-  0% {
-    transform: translate(10%,-60%) scale(0) rotate(10deg);
-    opacity: 0;
-  }
-  20% {
-    /* Accelerate the fall with a slight arc */
-    transform: translate(8%,-45%) scale(0.8) rotate(8deg);
-    opacity: 0.7;
-  }
-  40% {
-    /* Nearing the ground with a larger scale for anticipation */
-    transform: translate(6%,-25%) scale(1.1) rotate(4deg);
-    opacity: 1;
-  }
-  55% {
-    /* Impact: overshoot downward slightly */
-    transform: translate(5%,5%) scale(1) rotate(0deg);
-    opacity: 1;
-  }
-  65% {
-    /* First bounce upward */
-    transform: translate(5%,0%) scale(1) rotate(0deg);
-  }
-  80% {
-    /* Small bounce down before settling */
-    transform: translate(3%,2%) scale(1) rotate(0deg);
-  }
-  100% {
-    /* Settle in place */
-    transform: translate(0%,0%) scale(1) rotate(0deg);
-  }
+	0% {
+		transform: translate(10%, -60%) scale(0) rotate(10deg);
+		opacity: 0;
+	}
+
+	20% {
+		/* Accelerate the fall with a slight arc */
+		transform: translate(8%, -45%) scale(0.8) rotate(8deg);
+		opacity: 0.7;
+	}
+
+	40% {
+		/* Nearing the ground with a larger scale for anticipation */
+		transform: translate(6%, -25%) scale(1.1) rotate(4deg);
+		opacity: 1;
+	}
+
+	55% {
+		/* Impact: overshoot downward slightly */
+		transform: translate(5%, 5%) scale(1) rotate(0deg);
+		opacity: 1;
+	}
+
+	65% {
+		/* First bounce upward */
+		transform: translate(5%, 0%) scale(1) rotate(0deg);
+	}
+
+	80% {
+		/* Small bounce down before settling */
+		transform: translate(3%, 2%) scale(1) rotate(0deg);
+	}
+
+	100% {
+		/* Settle in place */
+		transform: translate(0%, 0%) scale(1) rotate(0deg);
+	}
 }
 
 .animation-element.desk.in-view {
-  opacity: 1;
-  transform-origin: center;
-  animation: desk-animation 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-@keyframes girl-middle-animation {
-	0% {
-		opacity: 0;
-		transform: translateY(100%) scale(0);
-	}
-	80% {
-		opacity: 1;
-		transform: translateY(-10%) scale(1);
-	}
-	100% {
-		opacity: 1;
-		transform: translateY(0) scale(1);
-	}
+	opacity: 1;
+	transform-origin: center;
+	animation: desk-animation 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 
-.animation-element.girl.in-view{
-		transform-origin: center;
-    animation: girl-middle-animation 0.8s ease-in-out forwards;
-		animation-delay:2.8s;
-}
 
 @keyframes clouds-slide-in-left {
 	0% {
 		opacity: 0;
 		transform: translateX(-100%);
 	}
+
 	50% {
 		opacity: 0.5;
 	}
+
 	100% {
 		opacity: 1;
 		transform: translateX(0);
@@ -784,35 +729,39 @@
 		opacity: 0;
 		transform: translateX(100%);
 	}
+
 	50% {
 		opacity: 0.5;
 	}
+
 	100% {
 		opacity: 1;
 		transform: translateX(0);
 	}
 }
 
-.animation-element.clouds.clouds-left.in-view{
-		transform-origin: center;
-    animation: clouds-slide-in-left 2s ease-in-out forwards;
-		animation-delay:2.4s;
+.animation-element.clouds.clouds-left.in-view {
+	transform-origin: center;
+	animation: clouds-slide-in-left 2s ease-in-out forwards;
+	animation-delay: 2.4s;
 }
 
-.animation-element.clouds.clouds-right.in-view{
-		transform-origin: center;
-		animation: clouds-slide-in-right 2s ease-in-out forwards;
-		animation-delay:2.4s;
+.animation-element.clouds.clouds-right.in-view {
+	transform-origin: center;
+	animation: clouds-slide-in-right 2s ease-in-out forwards;
+	animation-delay: 2.4s;
 }
 
-@keyframes about-letters-animation{
+@keyframes about-letters-animation {
 	0% {
 		opacity: 0;
 		transform: scale(0) translateX(-50%) rotate(-180deg);
 	}
+
 	50% {
 		opacity: 0.5;
 	}
+
 	100% {
 		opacity: 1;
 		transform: scale(1) translateX(-50%) rotate(3deg);
@@ -826,4 +775,247 @@
 	transform: scale(0) translateX(-50%) rotate(-180deg);
 	animation: about-letters-animation 0.5s ease-in-out forwards;
 	animation-delay: 2.8s;
+}
+
+
+@keyframes rainbow-clip-animation {
+	0% {
+		clip-path: inset(100% 0% 0% 0%);
+		/* Start with only a thin strip visible at the bottom */
+		opacity: 0;
+	}
+
+	100% {
+		clip-path: inset(0% 0% 0% 0%);
+		/* Reveal the entire rainbow */
+		opacity: 1;
+	}
+}
+
+
+
+
+@keyframes slide-in-cake-animation {
+	0% {
+		opacity: 0;
+		transform: translateY(100%);
+	}
+
+	80% {
+		opacity: 1;
+		transform: translateY(-10%) scale(1.2);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(25%) scale(1.2);
+	}
+}
+
+.animation-element.slide-in-cake.in-view {
+	opacity: 0;
+	transform-origin: center;
+	transform: translateY(100%);
+	animation: slide-in-cake-animation 0.8s ease-in-out forwards;
+}
+
+
+
+
+.rainbow {
+	transform-origin: center;
+	transform: scale(1) translateY(-5%);
+}
+
+@keyframes girl-middle-animation {
+	0% {
+		opacity: 0;
+		transform: translateY(100%) scale(0);
+	}
+
+	80% {
+		opacity: 1;
+		transform: translateY(-10%) scale(0.8);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0) scale(0.8);
+	}
+}
+
+.animation-element.girl.in-view {
+	transform-origin: center;
+	animation: girl-middle-animation 0.8s ease-in-out forwards;
+	animation-delay: 2.8s;
+}
+
+
+@media (max-width: 1280px) {
+	.rainbow {
+		transform: scale(1.2) translateY(0%);
+	}
+
+	@keyframes girl-middle-animation-1280 {
+		0% {
+			opacity: 0;
+			transform: translateY(100%) scale(0);
+		}
+
+		80% {
+			opacity: 1;
+			transform: translateY(-10%) scale(0.9);
+			/* Smaller scale: 0.8 */
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateY(0) scale(0.9);
+		}
+	}
+
+	.animation-element.girl.in-view {
+		animation: girl-middle-animation-1280 0.8s ease-in-out forwards;
+		animation-delay: 2.8s;
+	}
+
+	@keyframes slide-in-cake-animation-1280 {
+		0% {
+			opacity: 0;
+			transform: translateY(100%);
+		}
+
+		80% {
+			opacity: 1;
+			transform: translateY(-10%);
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateY(25%);
+		}
+	}
+
+	.animation-element.slide-in-cake.in-view {
+		opacity: 0;
+		transform: translateY(100%);
+		animation: slide-in-cake-animation-1280 0.8s ease-in-out forwards;
+	}
+}
+
+/* Breakpoint for screens up to 1024px */
+@media (max-width: 1024px) {
+	.rainbow {
+		transform: scale(2) translateY(-30%);
+	}
+
+	@keyframes girl-middle-animation-1024 {
+		0% {
+			opacity: 0;
+			transform: translateY(100%) scale(0);
+		}
+
+		80% {
+			opacity: 1;
+			transform: translateY(-20%) scale(1.4);
+			/* Smaller scale: 0.8 */
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateY(-10%) scale(1.4);
+		}
+	}
+
+	.animation-element.girl.in-view {
+		animation: girl-middle-animation-1024 0.8s ease-in-out forwards;
+		animation-delay: 2.8s;
+	}
+
+	@keyframes slide-in-cake-animation-1024 {
+		0% {
+			opacity: 0;
+			transform: translateY(100%);
+		}
+
+		80% {
+			opacity: 1;
+			transform: translateY(-10%) scale(1.5);
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateY(5%) scale(1.5);
+		}
+	}
+
+	.animation-element.slide-in-cake.in-view {
+		opacity: 0;
+		transform-origin: center;
+		transform: translateY(100%);
+		animation: slide-in-cake-animation-1024 0.8s ease-in-out forwards;
+	}
+}
+
+/* Breakpoint for screens up to 768px (assuming you meant this) */
+@media (max-width: 768px) {
+	.rainbow {
+		transform: scale(2) translateY(-30%);
+	}
+}
+
+/* Breakpoint for screens up to 640px */
+@media (max-width: 640px) {
+	.rainbow {
+		transform: scale(3.5) translateY(-40%);
+		/* Reset to normal size */
+	}
+
+	@keyframes slide-in-cake-animation-640 {
+		0% {
+			opacity: 0;
+			transform: translateY(100%);
+		}
+
+		80% {
+			opacity: 1;
+			transform: translateY(-10%) scale(2);
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateY(-20%) scale(2);
+		}
+	}
+
+	.animation-element.slide-in-cake.in-view {
+		opacity: 0;
+		transform-origin: center;
+		transform: translateY(100%);
+		animation: slide-in-cake-animation-640 0.8s ease-in-out forwards;
+	}
+}
+
+.animation-element.slide-in-cake-1.in-view {
+	animation-delay: 1.3s;
+}
+
+.animation-element.slide-in-cake-2.in-view {
+	animation-delay: 1.5s;
+}
+
+.animation-element.slide-in-cake-3.in-view {
+	animation-delay: 1.7s;
+}
+
+.animation-element.slide-in-cake-4.in-view {
+	animation-delay: 1.9s;
+}
+
+.animation-element.slide-in-cake-5.in-view {
+	animation-delay: 2.1s;
+}
+
+.animation-element.slide-in-cake-6.in-view {
+	animation-delay: 2.3s;
 }

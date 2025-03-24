@@ -110,13 +110,13 @@ const ShoppingCart = () => {
         <button 
           id="btn_open_shopcart" 
           onClick={onToggleShopCart}
-          className="absolute top-12 left-12 w-24 h-24 pointer-events-auto">
-          <img src={Cart} alt="cake_open_navbar" className="menu-btn h-16 sm:h-24 w-auto"/> 
+          className="absolute top-6 sm:top-12 left-6 sm:left-12 w-auto h-auto pointer-events-auto">
+          <img src={Cart} alt="cake_open_navbar" className="menu-btn h-14 sm:w-24 sm:h-24 w-auto"/> 
           {state.items.length > 0 && (
-            <span className="absolute top-0 -right-4 h-8 w-8 inline-flex justify-center items-center text-lg bg-cocoa rounded-full text-secondary">{state.items.length}</span>
+            <span className="absolute -top-2 -right-4 h-6 w-6 sm:h-8 sm:w-8 inline-flex justify-center items-center text-md sm:text-lg bg-cocoa rounded-full text-secondary">{state.items.length}</span>
           )}
         </button>
-      <div className={`absolute ${ isOpen ? "left-0":"-left-[100%]"} top-0 transition-all duration-[0.8s] ease-in-out h-full w-[400px] bg-secondary overflow-hidden pointer-events-auto flex flex-col justify-start items-start p-6 pt-12 `}>
+      <div className={`absolute ${ isOpen ? "left-0":"-left-[100%]"} top-0 transition-all duration-[0.8s] ease-in-out h-full w-full sm:w-[400px] bg-secondary overflow-hidden pointer-events-auto flex flex-col justify-start items-start p-6 pt-12`}>
             <button className='absolute top-3 right-3 bg-cocoa text-secondary rounded-full p-2 h-auto w-auto hover:scale-110 active:scale-95 duration-300' onClick={()=>onToggleShopCart()}>
               <X className='h-8 w-8'/>
             </button>

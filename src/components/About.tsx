@@ -10,11 +10,11 @@ const About = () => {
       style={{ backgroundSize: '250px 250px' }}
       className="w-full h-[100vh] flex flex-col bg-hero bg-cover bg-center bg-repeat relative overflow-hidden scroll-snap-child">
       <AboutMain 
-        className="absolute left-0 bottom-0 w-full h-full"
+        className="absolute left-0 !bottom-[10%] lg:bottom-0 w-full h-full scale-[1.1] lg:scale-1"
         preserveAspectRatio="xMidYMax meet"
       />
       <AboutMainBorderSVG 
-        className="absolute left-0 -bottom-6 w-full h-full scale-[1.2]"
+        className="absolute left-0 bottom-0 w-full h-full"
         preserveAspectRatio="xMidYMax meet"
       />
 
@@ -22,12 +22,14 @@ const About = () => {
         animation-element
         about-letters
         text-shadow-primary
-        text-md sm:text-xl 
+        text-xl  sm:text-3xl  lg:text-2xl
         text-primary
         font-heading 
         text-wrap
         left-1/2 -translate-x-1/2
-        bottom-[20%]
+        bottom-[40%]
+        sm:bottom-[50%]
+        lg:bottom-[25%]
         w-[60%]
         absolute
         opacity-0

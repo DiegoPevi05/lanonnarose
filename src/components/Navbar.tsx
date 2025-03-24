@@ -36,14 +36,14 @@ const Navbar: FC = () => {
         <button 
           id="btn_open_navbar" 
           onClick={onToggleNavbar}
-          className="absolute top-12 right-12 w-24 h-24 pointer-events-auto">
-          <img src={Cake} alt="cake_open_navbar" className="menu-btn h-16 sm:h-24 w-auto"/> 
+          className="absolute top-6 sm:top-12 right-6 sm:right-12 w-auto h-auto pointer-events-auto">
+          <img src={Cake} alt="cake_open_navbar" className="menu-btn h-14 sm:h-24 sm:h-24 w-auto"/> 
         </button>
         <section 
           id="navbar" 
           className={`
           absolute 
-          px-24 py-12
+          px-10 sm:px-24 py-6 sm:py-12
           m-0
           sidebar bg-secondary overflow-hidden
           ${hasInteracted ? (isOpen ? 'open opacity-1' : 'close opacity-1') : 'opaity-0'}`}
@@ -52,7 +52,7 @@ const Navbar: FC = () => {
           <button 
             id="btn_close_navbar" 
             onClick={onToggleNavbar}
-            className="absolute top-12 right-12 w-24 h-24">
+            className="absolute top-6 sm:top-12 right-6 sm:right-12 w-auto h-auto">
             <XIcon className='menu-btn h-16 sm:h-24 w-auto hover:text-primary' />
           </button>
 
@@ -71,7 +71,7 @@ const Navbar: FC = () => {
                   onHandle={onToggleNavbar}
                 >
                   <li key={"Link_"+item.name} 
-                  className="navbar-link text-5xl font-bold font-heading text-primary hover:text-rose ease-in-out duration-300">{t(item.label)}</li>
+                    className="navbar-link text-3xl sm:text-5xl font-bold font-heading text-primary hover:text-rose ease-in-out duration-300">{t(item.label)}</li>
                 </ScrollToSectionButton>
               ))}
             </ul>

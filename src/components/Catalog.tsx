@@ -112,8 +112,8 @@ const Catalog = (props:CatalogProps) => {
           />
         </div>
 
-        <div className={`absolute ${ openModal ? 'right-20 opacity-1': '-right-[100%] opacity-0'} top-1/2 -translate-y-1/2 w-[35%] h-[80%] bg-catalog-modal p-8 z-[160] rounded-xl shadow-lg flex flex-col justify-start items-start transition-all duration-[0.8s] bg`}>
-            <button className='absolute -top-6 -right-6 bg-cocoa text-secondary rounded-full p-2 h-auto w-auto hover:scale-110 active:scale-95 duration-300' onClick={()=>toggleModal()}>
+      <div className={`absolute ${ openModal ? 'right-0 sm:right-[10%] lg:right-20 opacity-1': '-right-[100%] opacity-0'} top-1/2 -translate-y-1/2 w-full sm:w-[80%] lg:w-[600px] h-full sm:h-[80%] bg-catalog-modal p-8 z-[160] sm:rounded-xl shadow-lg flex flex-col justify-start items-start transition-all duration-[0.8s] bg`}>
+        <button className='absolute top-6 sm:-top-6 right-6 sm:-right-6 bg-cocoa text-secondary rounded-full p-2 h-auto w-auto hover:scale-110 active:scale-95 duration-300' onClick={()=>toggleModal()}>
               <X className='h-12 w-12'/>
             </button>
             <p className='text-cocoa font-heading text-sm'>Birthday Cakes</p>
