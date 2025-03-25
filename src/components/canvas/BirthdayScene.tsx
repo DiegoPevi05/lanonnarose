@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import {  useGLTF } from '@react-three/drei';
 import { ClipboardList, Cake as IconCake } from 'lucide-react';
@@ -59,7 +59,11 @@ const fragmentShader = `
 `;
 
 
-const Cake = () => {
+interface CakeProps {
+  windowSize: "sm" | "md" | "lg" | "xl";
+}
+
+const Cake = (props:CakeProps) => {
   const cakeRef:any = useRef();
   const { scene } = useGLTF('/cakes/strawberry_cake.glb');
 
@@ -125,11 +129,23 @@ const Cake = () => {
     }
   });
 
+  const [initalPosition,setInitialPosition] = useState<{
+    position: [number, number, number];
+    rotation: [number, number, number];
+    scale: [number, number, number];
 
+  }>({ position: [0.7, -1.3, 3], rotation: [0.2,0,0], scale: [30, 30, 30] });
 
+  useEffect(() => {
+    if(props.windowSize == "sm"){
+      setInitialPosition(
+        { position: [0, -2.3, 2.5], rotation: [0,0,0], scale: [30, 30, 30] }
+      )
+    }
+  }, [props.windowSize]);
 
   return (
-    <group ref={cakeRef} position={[0.7, -1.3, 3]} rotation={[0.2,0,0]} scale={[30, 30, 30]}>
+    <group ref={cakeRef} position={initalPosition.position} rotation={initalPosition.rotation} scale={initalPosition.scale}>
       {/* Render the GLB model */}
       <primitive object={scene} />
       {/* Add point lights at candle positions */}
@@ -164,7 +180,12 @@ const Cake = () => {
   );
 };
 
-const BirthdayScene = () => {
+
+interface BirthdaySceneProps {
+  windowSize: "sm" | "md" | "lg" | "xl";
+}
+
+const BirthdayScene = (props:BirthdaySceneProps) => {
 
   const lightRef:any = useRef(); // Create a ref to access the directional light
 
@@ -176,7 +197,7 @@ const BirthdayScene = () => {
   }, []);
 
   return (
-    <div id="event-0" className="h-full min-w-[100vw] relative">
+    <div id="event-0" className="event-section h-full min-w-[100vw] relative">
       <Canvas
         gl={(canvas) => {
           const renderer = new THREE.WebGLRenderer({
@@ -201,22 +222,17 @@ const BirthdayScene = () => {
           castShadow
         />
         {/* Add the rotating cake */}
-        <Cake />
+        <Cake windowSize={props.windowSize} />
       </Canvas>
       {/* HTML overlay for text or other elements */}
-      <div className='absolute top-[10%] left-[10%] transform -translate-x-1/2 -translate-y-1/2'>
-        <p className='text-primary font-heading text-6xl text-shadow-primary'>Events</p>
-      </div>
-      <div className='absolute top-[20%] right-[5rem] transform -translate-x-1/2 -translate-y-1/2'>
-        <p className='text-primary font-heading text-6xl text-shadow-primary animation-element slide-in'>Happy Birthday</p>
-      </div>
+      <p className='absolute top-[20%] right-[2rem]  lg:right-[5rem] w-[50%] lg:w-auto text-primary leading-[40px] sm:leading-[70px] text-right font-heading text-wrap text-4xl sm:text-6xl text-shadow-primary animation-element slide-in'>Happy Birthday</p>
       <div className='
         absolute 
         birthday-info-wrapper
-        left-[10%] 
-        top-1/2 
+        left-[4%] sm:left-[10%] 
+        top-[45%] sm:top-1/2 
         -translate-y-1/2
-        h-[300px]
+        h-auto sm:h-[300px]
         w-[400px]
         font-heading 
         text-primary 
@@ -224,7 +240,7 @@ const BirthdayScene = () => {
       '>
         <div className="birthday-info">
           <div className="birthday-info-text">
-            <p className="text-xl font-body text-justify mt-5">
+            <p className="text-sm sm:text-xl font-body text-justify mt-5">
               We can make your birthday special by sharing a cake with you. It's a special day for you and for all of us who love you. We bring you different cakes that you can enjoy with your loved ones.
             </p>
             <div className='w-full h-auto flex flex-row justify-between items-center mt-4'>

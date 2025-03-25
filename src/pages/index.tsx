@@ -73,15 +73,14 @@ const Home:FC<HomeProps> = () => {
     };
   }, []); // Empty dependency array: Runs once on mount
 
-
   return(
     <div className='relative scroll-snap-parent'>
       <ShoppingCart/>
       <Navbar/>
       <Hero windowSize={windowSize} title={"Bienvenido a La Nona Rose"} content="Encuentra los mejores postres que puedas encontrar"/>
       <About/>
-      <Events/>
-      <Catalog products={products}/>
+      <Events windowSize={windowSize}/>
+      <Catalog windowSize={windowSize} products={products}/>
       <Contact/>
     </div>
   )

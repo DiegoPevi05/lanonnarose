@@ -1,8 +1,5 @@
 import {FC, useState } from "react";
-import { motion } from "framer-motion";
 import {BirthdayCake} from "../assets/images"
-import { styles } from "../styles";
-import { slideIn } from "../lib/motions";
 import {toast} from "react-hot-toast";
 import Button from './ui/Button';
 import { useTranslation } from 'react-i18next';
@@ -63,19 +60,18 @@ const Contact:FC = () => {
     <section
       id="contact_us"
       style={{ backgroundSize: '250px 250px' }}
-      className={`xl:mt-0 h-full w-full px-10 sm:px-48 py-6 sm:py-12 flex md:flex-row flex-col-reverse gap-0 lg:gap-10 overflow-hidden bg-hero bg-repeat scroll-snap-child`}
+      className={`xl:mt-0 h-full w-full px-4 sm:px-20 lg:px-24 xl:px-48 py-6 sm:py-12 flex  flex-col-reverse lg:flex-row items-center gap-0 lg:gap-10 overflow-hidden bg-hero bg-repeat scroll-snap-child`}
     >
-      <motion.div
-        variants={slideIn("left", "tween", 0.2, 1)}
-        className='w-full md:w-1/2  p-4 sm:p-8 rounded-2xl red-orange-gradient'
+      <div
+        className='w-full lg:w-1/2  p-4 sm:p-8 rounded-2xl'
       >
-        <p className={styles.sectionSubText}>{t('Information')}</p>
-        <h2 className={styles.sectionHeadText}>{t('Contact Us')}</h2>
+        <p className="text-3xl text-cocoa font-bold">{t('Information')}</p>
+        <h2 className="text-5xl text-primary font-heading font-bold text-shadow-primary">{t('Contact Us')}</h2>
         <div
-          className='mt-0 flex flex-col gap-2 sm:gap-8 w-full'
+          className='mt-8 sm:mt-4 flex flex-col gap-2 sm:gap-8 w-full'
         >
           <div className='flex flex-col'>
-            <span className='font-small sm:text-lg mb-2 sm:mb-4'>{t('Name')}</span>
+            <span className='text-3xl text-primary font-heading font-bold text-shadow-primary mb-4'>{t('Name')}</span>
             <input
               type='text'
               name='name'
@@ -88,7 +84,7 @@ const Contact:FC = () => {
             />
           </div>
           <div className='flex flex-col'>
-            <span className='font-small sm:text-lg mb-2 sm:mb-4'>{t('Email')}</span>
+            <span className='text-3xl text-primary font-heading font-bold text-shadow-primary mb-4'>{t('Email')}</span>
             <input
               type='email'
               name='email'
@@ -101,7 +97,7 @@ const Contact:FC = () => {
             />
           </div>
           <div className='flex flex-col'>
-            <span className='font-small sm:text-lg mb-2 sm:mb-4'>{t('Message')}</span>
+            <span className='text-3xl text-primary font-heading font-bold text-shadow-primary mb-4'>{t('Message')}</span>
             <textarea
               rows={7}
               name='message'
@@ -122,18 +118,17 @@ const Contact:FC = () => {
             {t('Send')}
           </Button>
         </div>
-      </motion.div>
+      </div>
 
-      <motion.div
-        variants={slideIn("right", "tween", 0.2, 1)}
+      <div
         className='w-full md:w-1/2 h-auto flex items-center '
       >
-          <motion.img
+          <img
             src={BirthdayCake}
             alt="BirthdayCake"
             className="w-full h-[140px] sm:h-[180px] lg:h-auto object-contain"
           />
-      </motion.div>
+      </div>
     </section>
   );
 };
