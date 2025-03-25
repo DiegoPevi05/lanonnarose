@@ -150,6 +150,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       id: product.id,
       name: product.name,
       type: product.type,
+      image_ref: product.image_ref,
       characteristics: {
         type: product.characteristics.type,
         size: [],

@@ -17,6 +17,7 @@ declare global{
     id:string;
     name: string;
     type:ItemType;
+    image_ref: string;
     characteristics: {
       type: OcassionType;
       size: string[];

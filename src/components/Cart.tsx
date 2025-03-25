@@ -2,8 +2,6 @@ import {useCallback, useEffect, useState} from "react";
 import Cart from "../assets/images/cart.svg";
 import {X} from "lucide-react";
 import {useCart} from "../contexts/CartContext";
-import Cake from "../assets/images/cake_4.svg";
-import Dessert from "../assets/images/cake_5.svg";
 
 interface OrderItemCartProps {
   id: string;
@@ -71,8 +69,8 @@ const OrderItemCart = ({ id, item, quantity }: OrderItemCartProps) => {
         <X className='h-4 w-4'/>
       </button>
       <div className="w-full h-full flex flex-row justify-start items-center gap-2">
-        <div className="w-[25%] h-full flex justify-center items-center px-1">
-          <img src={item.type == "CAKE" ? Cake : Dessert} alt={item.name} className="w-full h-auto"/>
+        <div className="w-[35%] h-full flex justify-center items-center px-1">
+          <img src={item.image_ref} alt={item.name} className="w-full h-auto rounded-lg"/>
         </div>
         <div className="w-full h-full flex flex-col justify-start items-start">
           <p className="text-cocoa font-heading text-xs">{item.name}</p>

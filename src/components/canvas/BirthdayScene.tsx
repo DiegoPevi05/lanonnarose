@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import {  useGLTF } from '@react-three/drei';
 import { ClipboardList, Cake as IconCake } from 'lucide-react';
 import * as THREE from 'three';
+import ScrollToSectionButton from '../ui/ScrollToSectionButton';
 
 const vertexShader = `
   uniform float time;
@@ -244,10 +245,12 @@ const BirthdayScene = (props:BirthdaySceneProps) => {
               We can make your birthday special by sharing a cake with you. It's a special day for you and for all of us who love you. We bring you different cakes that you can enjoy with your loved ones.
             </p>
             <div className='w-full h-auto flex flex-row justify-between items-center mt-4'>
-              <button className='font-heading border-2 border-primary text-primary px-5 py-2 rounded-lg hover:bg-primary hover:text-white transition-all duration-300 ease-in-out active:scale-95 inline-flex gap-x-2'>
-                <ClipboardList/>
-                Catalog
-              </button>
+              <ScrollToSectionButton
+                sectionId='catalog'
+                className='font-heading border-2 border-primary text-primary px-5 py-2 rounded-lg hover:bg-primary hover:text-white transition-all duration-300 ease-in-out active:scale-95 inline-flex gap-x-2'>
+                  <ClipboardList/>
+                  Catalog
+              </ScrollToSectionButton>
               <button className='font-heading border-2 border-cocoa text-cocoa px-5 py-2 rounded-lg hover:bg-cocoa hover:text-white transition-all duration-300 ease-in-out active:scale-95 inline-flex gap-x-2'>
                 <IconCake />
                 Birthday Cakes

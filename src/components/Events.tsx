@@ -92,6 +92,14 @@ const Events = (props:EventsProps) => {
     }
   }, []);
 
+ // Set default volume to 0.2 when the audio element is initialized
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.volume = 0.05; // Set volume to 20%
+    }
+  }, []);
+
   // Toggle audio playback
   const toggleAudio = () => {
     const audio = audioRef.current;
